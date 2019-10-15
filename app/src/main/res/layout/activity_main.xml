@@ -1,19 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:background="@drawable/background_gradient"
+        tools:context=".view.ui.MainActivity">
 
     <TextView
+            android:id="@+id/headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:layout_marginBottom="500dp"
+            android:text="@string/app_name"
+            android:textColor="@color/colorCo2Green"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.381" />
+
+    <Button
+            android:id="@+id/opret_profil_button"
+            android:layout_width="203dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/button_gradient"
+            android:textAllCaps="false"
+            android:text="@string/opret_profil"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorButtonText"
+            android:shadowColor="@color/colorCo2Black"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="8"
+            app:layout_constraintBottom_toTopOf="@id/imageView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headline" />
+
+    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="50sp"
+            android:layout_marginBottom="50sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/opret_profil_button"
+            app:srcCompat="@drawable/co2windmill" />
 
-</android.support.constraint.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
