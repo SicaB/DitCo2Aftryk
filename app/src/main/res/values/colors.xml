@@ -9,7 +9,8 @@
     <color name="colorButtonLightGreen">#87F11B</color>
     <color name="colorButtonDarkGreen">#436D19</color>
     <color name="colorWhite">#FFFFFF</color>
-
     <color name="text_shadow">#7F000000</color>
+    <color name="textfield_background">#AAD67C</color>
+
 
 </resources>

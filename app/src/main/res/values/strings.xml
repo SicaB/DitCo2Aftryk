@@ -9,7 +9,8 @@
     <string name="enter_co2_headline">Indtast Co2</string>
     <string name="plane_btn">Fly</string>
     <string name="choose_transport">Vælg transport form</string>
-    <string name="hours_flown">Antal timer fløjet</string>
+    <string name="hours_flown">Antal fløjet timer</string>
     <string name="Plane_transport_headline">Fly Transport</string>
     <string name="count_co2_btn">Beregn co2 i tons</string>
+    <string name="number_of_persons">Antal personer</string>
 </resources>
