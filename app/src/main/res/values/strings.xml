@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Dit Co2 Aftryk</string>
-    <string name="opret_profil">Opret Profil</string>
+    <string name="enter_co2_btn">Indtast co2</string>
+    <string name="today_headline">Idag</string>
+    <string name="transport_btn">Transport</string>
+    <string name="forbrug_btn">Forbrug</string>
+    <string name="el_btn">El</string>
+    <string name="varme_btn">Varme</string>
+    <string name="enter_co2_headline">Indtast Co2</string>
+    <string name="plane_btn">Fly</string>
+    <string name="choose_transport">Vælg transport form</string>
+    <string name="hours_flown">Antal timer fløjet</string>
+    <string name="Plane_transport_headline">Fly Transport</string>
+    <string name="count_co2_btn">Beregn co2 i tons</string>
 </resources>

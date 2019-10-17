@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/background_gradient"
+        tools:context=".view.ui.PlaneActivity">
+
+    <TextView
+            android:id="@+id/headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Plane_transport_headline"
+            android:textColor="@color/colorCo2Green"
+            android:textSize="32sp"
+            android:layout_marginBottom="600dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.381" />
+
+    <EditText
+            android:id="@+id/EnterHoursFlown"
+            android:layout_width="216dp"
+            android:layout_height="39dp"
+            android:layout_marginBottom="300dp"
+            android:background="@drawable/textfield_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/textHoursFlown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hours_flown"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toTopOf="@id/EnterHoursFlown"
+            app:layout_constraintHorizontal_bias="0.305"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.972" />
+
+    <Button
+            android:id="@+id/planeBtn"
+            android:layout_width="178dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_gradient"
+            android:shadowColor="@color/colorCo2Black"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="8"
+            android:text="@string/count_co2_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/colorButtonText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.402" />
+
+    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="234dp"
+            android:layout_height="234dp"
+            android:layout_marginTop="400dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/co2windmill" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
