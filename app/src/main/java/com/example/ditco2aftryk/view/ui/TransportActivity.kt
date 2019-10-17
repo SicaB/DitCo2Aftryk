@@ -12,7 +12,7 @@ class TransportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transport)
 
-        planeBtn.setOnClickListener {
+        SaveCo2Btn.setOnClickListener {
             // intent is used to start a new activity
             val intent = Intent(this, PlaneActivity::class.java)
             // start your next activity
