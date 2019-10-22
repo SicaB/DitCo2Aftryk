@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ditco2aftryk.R
 import kotlinx.android.synthetic.main.activity_enter_co2.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_home_screen.*
 
 class EnterCo2Activity : AppCompatActivity() {
 

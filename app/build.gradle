@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -22,44 +24,57 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding{
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    // Constraint layout
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    def retrofitVersion = '2.6.0',
+        roomVersion = '2.2.0',
+        lifecycleVersion = '2.2.0-beta01',
+        coroutines = '1.2.0',
+        materialVersion = '1.1.0-beta01',
+        kodeinVersion = '6.2.1',
+        NavigationArchVersion = '2.2.0-beta01'
+
+    // Retrofit and GSON
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     // RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-    def roomVersion = '2.2.0',
-        lifecycleVersion = '2.2.0-beta01',
-        androidxArchVersion = '2.0.0',
-        coroutines = '1.2.0'
-
-
-    // Lifecycle components
+    // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
-    androidTestImplementation "androidx.arch.core:core-testing:$androidxArchVersion"
 
-    // ViewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    // New material design
+    implementation "com.google.android.material:material:$materialVersion"
 
-    // Room components
+    // Kodein Dependency Injection
+    implementation "org.kodein.di:kodein-di-generic-jvm:$kodeinVersion"
+    implementation "org.kodein.di:kodein-di-framework-android-x:$kodeinVersion"
+
+    // Room Components
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
-    androidTestImplementation "androidx.room:room-testing:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
     // Coroutines
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+    // Android Navigation Architecture
+    implementation "androidx.navigation:navigation-fragment-ktx:$NavigationArchVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$NavigationArchVersion"
 
 }
