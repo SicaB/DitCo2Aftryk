@@ -1,4 +1,4 @@
-package com.example.ditco2aftryk.model
+package com.example.ditco2aftryk.model.entities
 
 import androidx.room.*
 
