@@ -1,11 +1,10 @@
 package com.example.ditco2aftryk.view.viewmodel
 
-import android.content.Context
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModel
 import com.example.ditco2aftryk.repositories.Co2CountRepository
+import com.example.ditco2aftryk.view.ui.HomeScreenActivity
 import com.example.ditco2aftryk.view.ui.Listener
 
 class FlightCo2ViewModel(private val repository: Co2CountRepository) : ViewModel(){

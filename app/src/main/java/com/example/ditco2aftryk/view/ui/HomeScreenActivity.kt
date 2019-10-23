@@ -35,6 +35,15 @@ class HomeScreenActivity : AppCompatActivity() {
         // bind this activity to the viewModel
         binding.viewmodel = viewModel
 
+        // Create the observer which updates the UI
+        val co2CountObserver = Observer<String> { newCount ->
+            // Update UI with current data
+            co2counter.text = newCount
+        }
+
+        // Observe the LiveData, passing in this activity as the LifeCycleOwner and the observer.
+        viewModel.co2Count.observe(this, co2CountObserver)
+
         viewModel.getCo2Count().observe(this, Observer{ co2Count ->
             // TODO update count
 

@@ -67,7 +67,7 @@
                 app:srcCompat="@drawable/carbon_footprint" />
 
         <TextView
-                android:id="@+id/Co2counter"
+                android:id="@+id/co2counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"

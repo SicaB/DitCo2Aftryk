@@ -9,6 +9,9 @@ import com.example.ditco2aftryk.model.entities.Co2Count
 class Co2CountRepository(private val database: AppDatabase) {
 
     // Observed LiveData will notify the observer when the data has changed
+    val co2Count: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
 
 //    fun calculateFlightCo2(co2Count: String) : LiveData<String>{
 //
