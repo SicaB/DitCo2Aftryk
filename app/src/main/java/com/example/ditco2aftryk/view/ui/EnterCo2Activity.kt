@@ -18,8 +18,6 @@ class EnterCo2Activity : AppCompatActivity() {
             val intent = Intent(this, TransportActivity::class.java)
             // start your next activity
             startActivity(intent)
-
-
         }
     }
 }

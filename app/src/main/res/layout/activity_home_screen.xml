@@ -70,13 +70,14 @@
                 android:id="@+id/co2counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@{viewmodel.accumulatedCo2Count}"
                 android:textSize="24sp"
                 android:textColor="@color/colorButtonText"
                 app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/headline"/>
+                app:layout_constraintTop_toBottomOf="@id/headline"
+                tools:text="0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

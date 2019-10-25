@@ -20,8 +20,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            debuggable true
+            minifyEnabled false
         }
     }
     dataBinding{
@@ -40,10 +45,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     def retrofitVersion = '2.6.0',
-        roomVersion = '2.2.0',
+        roomVersion = '2.2.1',
         lifecycleVersion = '2.2.0-beta01',
         coroutines = '1.2.0',
-        materialVersion = '1.1.0-beta01',
+        materialVersion = '1.2.0-alpha01',
         kodeinVersion = '6.2.1',
         NavigationArchVersion = '2.2.0-beta01'
 

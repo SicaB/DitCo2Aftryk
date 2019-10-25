@@ -1,4 +1,4 @@
-package com.example.ditco2aftryk.view.ui.util
+package com.example.ditco2aftryk.utils
 
 import android.content.Context
 import android.view.View

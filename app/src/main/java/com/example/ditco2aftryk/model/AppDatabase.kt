@@ -12,7 +12,7 @@ abstract class AppDatabase : RoomDatabase(){
     // In the database we have to implement abstract functions for all dao's in the project
     abstract fun getCo2CountDao() : Co2CountDao
 
-    // Create AppDatabase
+    // Create AppDatabase Singleton
     companion object{
         // Singleton prevents multible instances of database opening at the same time
         // Volatile makes this variable visible to all other threads
@@ -36,11 +36,5 @@ abstract class AppDatabase : RoomDatabase(){
                 AppDatabase::class.java,
                 "MyDatabase.db"
             ).build()
-
-
-
     }
-
-
-
 }

@@ -3,15 +3,19 @@ package com.example.ditco2aftryk.model
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.ditco2aftryk.model.entities.Co2Count
+
+// This is where the database CRUD (create, read, update and delete) operations are defined.
 
 @Dao
 interface Co2CountDao {
 
-    @Insert
-    suspend fun insert(co2Count: Co2Count) : Long // Long to get the raw id when co2Count is successfully inserted
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(co2Count: Co2Count)
 
-    @Query("SELECT * FROM co2Count")
-    fun getCo2Count() : LiveData<Co2Count>
+    @Query("SELECT SUM(co2Size) FROM co2_counts")
+    fun getAccumulatedCo2Counts() : LiveData<String>
+
 }
