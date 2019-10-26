@@ -9,7 +9,6 @@
         <variable
                 name="viewmodel"
                 type="com.example.ditco2aftryk.view.viewmodel.FlightCo2ViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +51,8 @@
                 android:id="@+id/calculatedCo2TextField"
                 android:layout_width="216dp"
                 android:layout_height="39dp"
+                android:textColor="@color/colorTextfieldLightGreen"
+                android:textSize="20sp"
                 android:background="@drawable/calculated_co2_field"
                 android:layout_marginBottom="60dp"
                 app:layout_constraintBottom_toTopOf="@id/saveCo2Btn"
