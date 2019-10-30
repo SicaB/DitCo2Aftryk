@@ -1,8 +1,8 @@
 package com.example.ditco2aftryk.view.ui
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -40,11 +40,8 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
 
         // start new activity when clicking on Enter co2 button
         enterCo2Button.setOnClickListener {
-
-            // intent is used to start a new activity
-            val intent = Intent(this, EnterCo2Activity::class.java)
             // start next activity
-            startActivity(intent)
+            startActivity(Intent(this, EnterCo2Activity::class.java))
         }
     }
 

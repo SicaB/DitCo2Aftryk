@@ -8,6 +8,11 @@
     <string name="varme_btn">Varme</string>
     <string name="enter_co2_headline">Indtast Co2</string>
     <string name="plane_btn">Fly</string>
+    <string name="car_btn">Bil</string>
+    <string name="motorcycle_btn">Motorcykel</string>
+    <string name="scooter_btn">Scooter</string>
+    <string name="train_btn">Tog</string>
+    <string name="bus_btn">Bus</string>
     <string name="choose_transport">Vælg transport form</string>
     <string name="hours_flown">Antal fløjet timer</string>
     <string name="Plane_transport_headline">Fly transport</string>

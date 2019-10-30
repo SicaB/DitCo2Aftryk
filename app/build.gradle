@@ -24,12 +24,12 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug{
+        debug {
             debuggable true
             minifyEnabled false
         }
     }
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 }
@@ -39,18 +39,19 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     def retrofitVersion = '2.6.0',
         roomVersion = '2.2.1',
-        lifecycleVersion = '2.2.0-beta01',
+        lifecycleVersion = '2.2.0-rc01',
         coroutines = '1.2.0',
         materialVersion = '1.2.0-alpha01',
         kodeinVersion = '6.2.1',
-        NavigationArchVersion = '2.2.0-beta01'
+        navigationArchVersion = '2.2.0-rc01',
+        lottieVersion = '3.1.0'
 
     // Retrofit and GSON
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -79,7 +80,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
     // Android Navigation Architecture
-    implementation "androidx.navigation:navigation-fragment-ktx:$NavigationArchVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$NavigationArchVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationArchVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationArchVersion"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
 }
