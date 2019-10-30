@@ -45,7 +45,7 @@
                 android:id="@+id/headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Plane_transport_headline"
+                android:text="@string/headline_plane_transport"
                 android:textColor="@color/colorTextfieldLightGreen"
                 android:textSize="28sp"
                 android:layout_marginBottom="250dp"

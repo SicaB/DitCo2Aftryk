@@ -1,21 +1,29 @@
 <resources>
     <string name="app_name">Dit Co2 Aftryk</string>
+
+    <!-- Headlines -->
+    <string name="headline_today">Idag</string>
+    <string name="headline_transport">Transport</string>
+    <string name="headline_enter_co2">Indtast Co2</string>
+    <string name="headline_consumption">Forbrug</string>
+
+    <!-- Buttons -->
     <string name="enter_co2_btn">Indtast co2</string>
-    <string name="today_headline">Idag</string>
-    <string name="transport_btn">Transport</string>
-    <string name="forbrug_btn">Forbrug</string>
-    <string name="el_btn">El</string>
-    <string name="varme_btn">Varme</string>
-    <string name="enter_co2_headline">Indtast Co2</string>
     <string name="plane_btn">Fly</string>
     <string name="car_btn">Bil</string>
     <string name="motorcycle_btn">Motorcykel</string>
-    <string name="scooter_btn">Scooter</string>
+    <string name="moppet_btn">Knallert</string>
     <string name="train_btn">Tog</string>
     <string name="bus_btn">Bus</string>
-    <string name="choose_transport">Vælg transport form</string>
-    <string name="hours_flown">Antal fløjet timer</string>
-    <string name="Plane_transport_headline">Fly transport</string>
+    <string name="ferry_btn">Færge</string>
+    <string name="el_btn">El</string>
+    <string name="heating_btn">Varme</string>
+    <string name="clothes_btn">Tøj Indkøb</string>
+    <string name="meat_btn">Kød Forbrug</string>
     <string name="count_co2_btn">Gem aftryk</string>
+
+    <!-- TextViews -->
+    <string name="hours_flown">Antal fløjet timer</string>
     <string name="co2_emitted">Udledt co2 i tons</string>
+
 </resources>

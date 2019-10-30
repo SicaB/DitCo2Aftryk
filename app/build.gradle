@@ -85,5 +85,6 @@ dependencies {
 
     // Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
 }
