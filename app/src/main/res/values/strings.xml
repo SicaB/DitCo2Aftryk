@@ -4,7 +4,7 @@
     <!-- Headlines -->
     <string name="headline_today">Idag</string>
     <string name="headline_transport">Transport</string>
-    <string name="headline_enter_co2">Indtast Co2</string>
+    <string name="headline_choose">Vælg</string>
     <string name="headline_consumption">Forbrug</string>
     <string name="headline_plane">Fly transport</string>
 
@@ -19,8 +19,8 @@
     <string name="ferry_btn">Færge</string>
     <string name="el_btn">El</string>
     <string name="heating_btn">Varme</string>
-    <string name="clothes_btn">Tøj Indkøb</string>
-    <string name="meat_btn">Kød Forbrug</string>
+    <string name="clothes_btn">Tøj</string>
+    <string name="meat_btn">Kød</string>
     <string name="count_co2_btn">Gem aftryk</string>
 
     <!-- TextViews -->

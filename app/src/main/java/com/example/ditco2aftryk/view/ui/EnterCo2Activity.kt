@@ -3,6 +3,7 @@ package com.example.ditco2aftryk.view.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import com.example.ditco2aftryk.R
 import kotlinx.android.synthetic.main.activity_enter_co2.*
@@ -19,6 +20,9 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
 
     }
 
+
+
+
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
     }
@@ -30,4 +34,12 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
     fun onFlightButtonClicked(v: View) {
         startActivity(Intent(this, FlightCo2Activity::class.java))
     }
+
+    fun onClothesButtonClicked(view: View) {}
+    fun onCarButtonClicked(view: View) {}
+    fun onMeatButtonClicked(view: View) {}
+    fun onTrainButtonClicked(view: View) {}
+    fun onHeatingButtonClicked(view: View) {}
+    fun onBusButtonClicked(view: View) {}
+    fun onElButtonClicked(view: View) {}
 }

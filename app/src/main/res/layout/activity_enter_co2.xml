@@ -19,7 +19,7 @@
                 android:id="@+id/headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/headline_enter_co2"
+                android:text="@string/headline_choose"
                 android:textColor="@color/colorTextfieldLightGreen"
                 android:textSize="28sp"
                 android:layout_centerInParent="true" />
@@ -27,48 +27,89 @@
     </RelativeLayout>
 
     <GridLayout
-            android:columnCount="2"
-            android:rowCount="7"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:layout_weight="8"
             android:layout_width="match_parent"
-            android:background="@color/colorBlack"
             android:layout_height="0dp"
-            android:padding="14dp">
+            android:layout_weight="0.4"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:rowCount="1">
+
+        <TextView
+                android:id="@+id/headline_transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:text="@string/headline_transport"
+                android:textColor="@color/colorTextfieldLightGreen"
+                android:textSize="20sp" />
+
+        <TextView
+                android:id="@+id/headline_consumption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:text="@string/headline_consumption"
+                android:textColor="@color/colorTextfieldLightGreen"
+                android:textSize="20sp" />
+
+    </GridLayout>
+
+    <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="8"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:padding="42dp"
+            android:rowCount="4">
 
         <!-- Row 1 -->
         <!-- Column 1 -->
+
         <androidx.cardview.widget.CardView
+                android:id="@+id/plane_cardview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onFlightButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                >
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/flightBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/airplane"
+                        android:shadowColor="@color/colorBlack" />
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/airplane"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8"
-                        android:onClick="onFlightButtonClicked"/>
+                        android:layout_gravity="center"
+                        android:text="@string/plane_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -78,32 +119,41 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onClothesButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/clothingBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/clothes"/>
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/clothes"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:layout_gravity="center"
+                        android:text="@string/clothes_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -114,32 +164,41 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onCarButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/carBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/car"/>
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/car"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:layout_gravity="center"
+                        android:text="@string/car_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -149,32 +208,41 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onMeatButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/meatBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/meat"/>
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/meat"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:layout_gravity="center"
+                        android:text="@string/meat_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -185,32 +253,41 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onTrainButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/trainBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/train"/>
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/train"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:layout_gravity="center"
+                        android:text="@string/train_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -220,32 +297,41 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onHeatingButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/heatingBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/heating"/>
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/heating"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:layout_gravity="center"
+                        android:text="@string/heating_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -256,32 +342,41 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onBusButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/busBtn"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/bus"/>
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bus"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:layout_gravity="center"
+                        android:text="@string/bus_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -291,37 +386,45 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
+                android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:cardBackgroundColor="@color/colorTextfieldLightGreen"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginBottom="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onElButtonClicked"
+                app:cardBackgroundColor="@color/colorButtonText"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
-                <Button
+                <ImageView
                         android:id="@+id/elBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
+                        android:background="@drawable/el"/>
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/el"
-                        android:shadowColor="@color/colorBlack"
-                        android:shadowDx="4"
-                        android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:layout_gravity="center"
+                        android:text="@string/el_btn"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
 
 
     </GridLayout>

@@ -19,7 +19,6 @@
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".view.ui.MeatActivity"></activity>
         <activity android:name=".view.ui.ClothesActivity" />
-        <activity android:name=".view.ui.ConsumptionActivity" />
         <activity android:name=".view.ui.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
