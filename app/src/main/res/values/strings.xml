@@ -6,6 +6,7 @@
     <string name="headline_transport">Transport</string>
     <string name="headline_enter_co2">Indtast Co2</string>
     <string name="headline_consumption">Forbrug</string>
+    <string name="headline_plane">Fly transport</string>
 
     <!-- Buttons -->
     <string name="enter_co2_btn">Indtast co2</string>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "768623178568",
+    "firebase_url": "https://dit-co2-aftryk.firebaseio.com",
+    "project_id": "dit-co2-aftryk",
+    "storage_bucket": "dit-co2-aftryk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768623178568:android:db1a9648d0f168a886f97d",
+        "android_client_info": {
+          "package_name": "com.example.ditco2aftryk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768623178568-ko7tr20r6i6nv1df9jlks76j0r4fk2bt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKOAp2xKlun6VNXhNXp-8DTPHgL59qeqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768623178568-ko7tr20r6i6nv1df9jlks76j0r4fk2bt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

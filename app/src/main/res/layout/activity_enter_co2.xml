@@ -67,7 +67,8 @@
                         android:shadowColor="@color/colorBlack"
                         android:shadowDx="4"
                         android:shadowDy="4"
-                        android:shadowRadius="8" />
+                        android:shadowRadius="8"
+                        android:onClick="onFlightButtonClicked"/>
 
             </LinearLayout>
 
