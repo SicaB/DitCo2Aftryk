@@ -13,9 +13,9 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_co2)
 
-        // Actionbar
-        home.setNavigationIcon(R.drawable.ic_home_black_24dp)
-        back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+//        // Actionbar
+//        home.setNavigationIcon(R.drawable.ic_home_black_24dp)
+//        back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
     }
 
@@ -28,6 +28,6 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
     }
 
     fun onFlightButtonClicked(v: View) {
-        startActivity(Intent(this, TransportActivity::class.java))
+        startActivity(Intent(this, FlightCo2Activity::class.java))
     }
 }
