@@ -17,7 +17,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.ui.MeatActivity"></activity>
+        <activity android:name=".view.ui.CarActivity"></activity>
+        <activity android:name=".view.ui.MeatActivity" />
         <activity android:name=".view.ui.ClothesActivity" />
         <activity android:name=".view.ui.SplashScreenActivity">
             <intent-filter>
@@ -27,7 +28,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.ui.FlightCo2Activity" />
-        <activity android:name=".view.ui.TransportActivity" />
         <activity android:name=".view.ui.EnterCo2Activity" />
         <activity android:name=".view.ui.HomeScreenActivity" />
     </application>

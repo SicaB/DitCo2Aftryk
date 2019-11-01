@@ -58,7 +58,7 @@ class FlightCo2Activity : AppCompatActivity(), Listener, Actionbar{
     }
 
     override fun onBackButtonClicked(v: View?){
-        startActivity(Intent(this, TransportActivity::class.java))
+        startActivity(Intent(this, EnterCo2Activity::class.java))
     }
 
     override fun onHomeButtonClicked(v: View?){

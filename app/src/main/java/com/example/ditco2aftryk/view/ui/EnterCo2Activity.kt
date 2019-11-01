@@ -15,12 +15,10 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
         setContentView(R.layout.activity_enter_co2)
 
 //        // Actionbar
-//        home.setNavigationIcon(R.drawable.ic_home_black_24dp)
-//        back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        home.setNavigationIcon(R.drawable.ic_home_black_24dp)
+        back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
     }
-
-
 
 
     override fun onBackButtonClicked(v: View?){

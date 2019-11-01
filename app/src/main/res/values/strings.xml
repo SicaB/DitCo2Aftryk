@@ -7,6 +7,10 @@
     <string name="headline_choose">Vælg</string>
     <string name="headline_consumption">Forbrug</string>
     <string name="headline_plane">Fly transport</string>
+    <string name="headline_car">Bil Transport</string>
+    <string name="headline_train">Tog Transport</string>
+    <string name="headline_bus">Bus Transport</string>
+    <string name="headline_clothes">Tøj Indkøb</string>
 
     <!-- Buttons -->
     <string name="enter_co2_btn">Indtast co2</string>
