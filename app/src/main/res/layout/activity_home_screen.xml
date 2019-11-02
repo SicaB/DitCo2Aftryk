@@ -34,6 +34,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.381" />
 
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:background="@drawable/circle_shape"
+                android:indeterminate="false"
+                android:max="100"
+                android:layout_marginBottom="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         <Button
                 android:id="@+id/enterCo2Button"
                 android:layout_width="269dp"
@@ -56,15 +69,13 @@
 
         <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginBottom="60dp"
-                android:layout_marginTop="60dp"
-                app:layout_constraintBottom_toTopOf="@+id/enterCo2Button"
-                app:layout_constraintHorizontal_bias="0.499"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/headline"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/carbon_footprint" />
 
         <TextView
@@ -72,8 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.accumulatedCo2Count}"
-                android:textSize="36sp"
                 android:textColor="@color/colorWhite"
+                android:textSize="30sp"
+                android:layout_marginBottom="60dp"
                 app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

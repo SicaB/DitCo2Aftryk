@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorCo2Green">#99FF6E</color>
-    <color name="colorBlack">#000000</color>
+    <color name="colorBlack">#121212</color>
     <color name="colorButtonText">#D9E9C6</color>
     <color name="colorButtonLightGreen">#87F11B</color>
     <color name="colorButtonDarkGreen">#436D19</color>
@@ -13,6 +13,8 @@
     <color name="colorTextfieldLightGreen">#AAD67C</color>
     <color name="colorTextfieldGray">#4E4E4E</color>
     <color name="colorLightGray">#BEBDBD</color>
+    <color name="colorDarkGreen">#213118</color>
+    <color name="colorDark">#212321</color>
 
 
 </resources>

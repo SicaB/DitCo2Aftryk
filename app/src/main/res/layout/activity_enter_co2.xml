@@ -7,11 +7,11 @@
         android:orientation="vertical"
         android:weightSum="10"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@drawable/background_gradient"
+        android:background="@color/colorBlack"
         tools:context=".view.ui.EnterCo2Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_weight="2"
+            android:layout_weight="1.8"
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
@@ -54,7 +54,7 @@
     <GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.4"
+            android:layout_weight="0.6"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -64,18 +64,18 @@
                 android:id="@+id/headline_transport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="60dp"
                 android:text="@string/headline_transport"
-                android:textColor="@color/colorTextfieldLightGreen"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 
         <TextView
                 android:id="@+id/headline_consumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
+                android:layout_marginStart="100dp"
                 android:text="@string/headline_consumption"
-                android:textColor="@color/colorTextfieldLightGreen"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 
     </GridLayout>
@@ -88,7 +88,7 @@
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
-            android:padding="42dp"
+            android:padding="5dp"
             android:rowCount="4">
 
         <!-- Row 1 -->
@@ -101,15 +101,14 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onFlightButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="16dp"
                 >
 
             <LinearLayout
@@ -117,22 +116,22 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                 <ImageView
                         android:id="@+id/flightBtn"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/airplane"
-                        android:shadowColor="@color/colorBlack" />
+                        android:background="@drawable/ic_plane" />
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/plane_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -146,16 +145,15 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onClothesButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -169,14 +167,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/clothes"/>
+                        android:background="@drawable/ic_clothes"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/clothes_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -192,15 +190,14 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onCarButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -214,14 +211,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/car"/>
+                        android:background="@drawable/ic_car"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/car_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -235,16 +232,15 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onMeatButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -258,14 +254,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/meat"/>
+                        android:background="@drawable/ic_meat"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/meat_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -281,15 +277,14 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onTrainButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -303,14 +298,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/train"/>
+                        android:background="@drawable/ic_train"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/train_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -324,16 +319,15 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onHeatingButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -347,14 +341,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/heating"/>
+                        android:background="@drawable/ic_heating"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/heating_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -370,15 +364,14 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onBusButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -392,14 +385,14 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/bus"/>
+                        android:background="@drawable/ic_bus"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/bus_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -413,16 +406,15 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onElButtonClicked"
-                app:cardBackgroundColor="@color/colorButtonText"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/colorDark"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -436,14 +428,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/el"/>
+                        android:background="@drawable/ic_el"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/el_btn"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
