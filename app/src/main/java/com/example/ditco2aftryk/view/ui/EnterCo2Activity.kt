@@ -38,6 +38,8 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
     fun onMeatButtonClicked(view: View) {}
     fun onTrainButtonClicked(view: View) {}
     fun onHeatingButtonClicked(view: View) {}
-    fun onBusButtonClicked(view: View) {}
+    fun onBusButtonClicked(view: View) {
+        startActivity(Intent(this, BusActivity::class.java))
+    }
     fun onElButtonClicked(view: View) {}
 }

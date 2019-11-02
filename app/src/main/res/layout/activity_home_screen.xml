@@ -35,13 +35,16 @@
                 app:layout_constraintVertical_bias="0.381" />
 
         <ProgressBar
+                android:id="@+id/circle"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="320dp"
                 android:layout_height="320dp"
                 android:background="@drawable/circle_shape"
                 android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_progress_bar"
                 android:max="100"
-                android:layout_marginBottom="200dp"
+                android:progress="30"
+                android:layout_marginBottom="180dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -51,7 +54,7 @@
                 android:id="@+id/enterCo2Button"
                 android:layout_width="269dp"
                 android:layout_height="54dp"
-                android:layout_marginBottom="160dp"
+                android:layout_marginBottom="250dp"
                 android:background="@drawable/button_gradient"
                 android:shadowColor="@color/colorBlack"
                 android:shadowDx="4"
@@ -65,7 +68,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/circle" />
 
         <ImageView
                 android:id="@+id/imageView"
@@ -91,6 +94,15 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/headline"
                 tools:text="0" />
+
+        <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

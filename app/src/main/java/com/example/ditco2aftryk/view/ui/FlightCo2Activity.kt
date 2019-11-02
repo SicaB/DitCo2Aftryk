@@ -48,10 +48,10 @@ class FlightCo2Activity : AppCompatActivity(), Listener, Actionbar{
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!enterHoursFlown.text.isEmpty()) {
+                if (enterHoursFlown.text.isNotEmpty()) {
                     val hoursFlown = enterHoursFlown.text.toString().toDouble()
-                    val calculatedFlightCo2 = hoursFlown * 0.092
-                    calculatedCo2TextField.text = String.format("%.2f", calculatedFlightCo2)
+                    val calculatedFlightCo2 = hoursFlown * 92
+                    calculatedCo2TextField.text = String.format("%.1f", calculatedFlightCo2)
                 }
             }
         })

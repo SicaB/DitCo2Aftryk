@@ -29,7 +29,7 @@
 
     <!-- TextViews -->
     <string name="hours_flown">Antal fløjet timer</string>
-    <string name="co2_emitted">Udledt co2 i tons</string>
-    <string name="km_distance">Km kørt</string>
+    <string name="co2_emitted">Udledt co2 i kg</string>
+    <string name="km_distance">Antal km kørt</string>
 
 </resources>
