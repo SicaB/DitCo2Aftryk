@@ -33,8 +33,8 @@ class BusViewModel (application: Application) : AndroidViewModel(application) {
 
     // Calculation of bus co2 based on input
     fun calculateBusCo2(input: String) : String{
-        val busCo2InKg = input.toInt() * 92
-        return busCo2InKg.toString()
+        val busCo2InGram = input.toDouble() * 69
+        return busCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked

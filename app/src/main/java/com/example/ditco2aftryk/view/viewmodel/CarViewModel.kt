@@ -4,21 +4,23 @@ import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.core.text.isDigitsOnly
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.ditco2aftryk.model.AppDatabase
 import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
 
-class FlightCo2ViewModel(application: Application) : AndroidViewModel(application) {
+class CarViewModel (application: Application) : AndroidViewModel(application) {
 
     // ViewModel maintains a reference to the repository to get data.
     private val repository: Co2CountRepository
 
     var listener: Listener? = null
 
-    val flightCo2Input = MutableLiveData<String>()
+    val carCo2Input = MutableLiveData<String>()
 
     private lateinit var input: Co2Count
 
@@ -29,20 +31,20 @@ class FlightCo2ViewModel(application: Application) : AndroidViewModel(applicatio
         repository = Co2CountRepository(co2CountDao)
     }
 
-    // Calculation of flight co2 based on input
-    fun calculateFlightCo2(input: String) : String{
-        val flightCo2InGram = input.toDouble() * 92000
-        return flightCo2InGram.toString()
+    // Calculation of car co2 based on input
+    fun calculateCarCo2(input: String) : String{
+        val carCo2InGram = input.toDouble() * 110
+        return carCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
-        if(!flightCo2Input.value?.isDigitsOnly()!! || flightCo2Input.value.isNullOrEmpty()){
+        if(!carCo2Input.value?.isDigitsOnly()!! || carCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Invalid co2 value entered.")
             return
         }
 
-        input = Co2Count(0, calculateFlightCo2(flightCo2Input.value!!))
+        input = Co2Count(0, calculateCarCo2(carCo2Input.value!!))
         insert(input)
         listener?.onSuccess()
     }

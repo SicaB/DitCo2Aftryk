@@ -54,7 +54,7 @@
     <GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.6"
+            android:layout_weight="0.5"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -83,7 +83,7 @@
     <GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:layout_weight="8"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
@@ -93,9 +93,7 @@
 
         <!-- Row 1 -->
         <!-- Column 1 -->
-
         <androidx.cardview.widget.CardView
-                android:id="@+id/plane_cardview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
@@ -106,31 +104,29 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onFlightButtonClicked"
+                android:onClick="onCarButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="16dp"
-                >
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                 <ImageView
-                        android:id="@+id/flightBtn"
+                        android:id="@+id/carBtn"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_plane" />
+                        android:background="@drawable/ic_car"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/plane_btn"
+                        android:text="@string/car_btn"
                         android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -195,7 +191,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onCarButtonClicked"
+                android:onClick="onBusButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
                 app:cardCornerRadius="20dp">
 
@@ -207,17 +203,17 @@
                     android:orientation="vertical">
 
                 <ImageView
-                        android:id="@+id/carBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/busBtn"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_car"/>
+                        android:background="@drawable/ic_bus"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/car_btn"
+                        android:text="@string/bus_btn"
                         android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -359,6 +355,7 @@
         <!-- Row 4 -->
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
+                android:id="@+id/plane_cardview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
@@ -369,29 +366,31 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onBusButtonClicked"
+                android:onClick="onFlightButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp"
+                >
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                 <ImageView
-                        android:id="@+id/busBtn"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:id="@+id/flightBtn"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_bus"/>
+                        android:background="@drawable/ic_plane" />
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/bus_btn"
+                        android:text="@string/plane_btn"
                         android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />

@@ -3,7 +3,9 @@ package com.example.ditco2aftryk.view.ui
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -23,7 +25,10 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.LargeValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlinx.android.synthetic.main.activity_home_screen.*
+import java.lang.Double.parseDouble
+import java.lang.Integer.parseInt
 import java.security.KeyStore
+import kotlin.math.log
 
 class HomeScreenActivity : AppCompatActivity(), Listener {
 
@@ -42,10 +47,21 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
 
         viewModel.listener = this
 
+
         // Create the observer which updates the UI
         val co2CountObserver = Observer<String> { newCount ->
+            co2counter.text = "0.0 Kg"
             // Update UI with current data
-            co2counter.text = newCount
+            if (newCount != null) {
+                co2counter.text = (String.format("%.2f", newCount.toDouble()/1000) + " Kg")
+            }
+            val circleProcess: Double? = newCount?.toDouble()
+            if (circleProcess != null) {
+                var newNumber = (circleProcess.toInt())
+                circle?.progress = newNumber
+                Log.d("mytag", "number $newNumber")
+            }
+
         }
 
         // Observe the LiveData, passing in this activity as the LifeCycleOwner and the observer.
@@ -58,7 +74,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
         }
 
         // Initialiserer linechart
-        val lineChart: LineChart = findViewById(R.id.line_chart)
+        val lineChart: LineChart? = findViewById(R.id.line_chart)
 
         val yValues = ArrayList<Entry>()
         yValues.add(Entry(0f, 30f, "0"))
@@ -86,24 +102,24 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
         val data = LineData(dataSets)
 
         // set data
-        lineChart.data = data
-        lineChart.description.isEnabled = false
-        lineChart.legend.isEnabled = false
-        lineChart.setPinchZoom(true)
+        lineChart?.data = data
+        lineChart?.description?.isEnabled = false
+        lineChart?.legend?.isEnabled = false
+        lineChart?.setPinchZoom(true)
 
         // position of x-axis and counts of labels
-        lineChart.xAxis.labelCount = 5
-        lineChart.xAxis.position = XAxis.XAxisPosition.TOP
+        lineChart?.xAxis?.labelCount = 5
+        lineChart?.xAxis?.position = XAxis.XAxisPosition.TOP
 
-        lineChart.axisLeft.setDrawGridLines(false)
-        lineChart.axisRight.setDrawGridLines(false)
-        lineChart.xAxis.setDrawGridLines(true)
-        lineChart.axisRight.isEnabled = false
-        lineChart.axisLeft.isEnabled = false
+        lineChart?.axisLeft?.setDrawGridLines(false)
+        lineChart?.axisRight?.setDrawGridLines(false)
+        lineChart?.xAxis?.setDrawGridLines(true)
+        lineChart?.axisRight?.isEnabled = false
+        lineChart?.axisLeft?.isEnabled = false
 
         // Text customization
-        lineChart.xAxis.textColor = ContextCompat.getColor(this, R.color.colorWhite)
-        lineChart.xAxis.textSize = 11f
+        lineChart?.xAxis?.textColor = ContextCompat.getColor(this, R.color.colorWhite)
+        lineChart?.xAxis?.textSize = 11f
 
         // array to hold week days
         val weekDays = ArrayList<String>()
@@ -116,17 +132,17 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
         weekDays.add("søn.")
 
         // Set the weekdays to the x-axis
-        lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(weekDays)
+        lineChart?.xAxis?.valueFormatter = IndexAxisValueFormatter(weekDays)
 
         // Grid customization
-        lineChart.axisRight.enableGridDashedLine(5f, 5f, 0f)
-        lineChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
-        lineChart.xAxis.enableGridDashedLine(5f, 5f, 0f)
-        lineChart.xAxis.enableAxisLineDashedLine(5f, 5f, 0f)
-        lineChart.xAxis.gridColor = ContextCompat.getColor(this, R.color.colorBlack)
-        lineChart.xAxis.gridLineWidth = 1.5f
-        lineChart.xAxis.axisLineColor = ContextCompat.getColor(this, R.color.colorBlack)
-        lineChart.xAxis.axisLineWidth = 1f
+        lineChart?.axisRight?.enableGridDashedLine(5f, 5f, 0f)
+        lineChart?.axisLeft?.enableGridDashedLine(5f, 5f, 0f)
+        lineChart?.xAxis?.enableGridDashedLine(5f, 5f, 0f)
+        lineChart?.xAxis?.enableAxisLineDashedLine(5f, 5f, 0f)
+        lineChart?.xAxis?.gridColor = ContextCompat.getColor(this, R.color.colorBlack)
+        lineChart?.xAxis?.gridLineWidth = 1.5f
+        lineChart?.xAxis?.axisLineColor = ContextCompat.getColor(this, R.color.colorBlack)
+        lineChart?.xAxis?.axisLineWidth = 1f
 
 
     }

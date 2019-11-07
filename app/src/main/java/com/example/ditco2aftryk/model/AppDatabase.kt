@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.ditco2aftryk.model.entities.Co2Count
+import com.example.ditco2aftryk.model.entities.DailyCo2Count
 
 @Database(entities = [Co2Count::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
 
     // In the database we have to implement abstract functions for all dao's in the project
     abstract fun getCo2CountDao() : Co2CountDao
+//    abstract fun getDailyCo2CountDao() : DailyCo2CountDao
 
     // Create AppDatabase Singleton
     companion object{

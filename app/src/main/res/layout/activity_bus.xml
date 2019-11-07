@@ -64,6 +64,7 @@
                 android:layout_marginTop="200dp"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/textfield_color"
+                android:inputType="number|numberDecimal"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

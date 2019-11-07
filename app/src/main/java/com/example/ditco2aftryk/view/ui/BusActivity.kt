@@ -55,7 +55,6 @@ class BusActivity : AppCompatActivity(), Listener, Actionbar {
                 }
             }
         })
-
     }
 
     override fun onBackButtonClicked(v: View?){
