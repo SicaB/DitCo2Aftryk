@@ -38,11 +38,19 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
         startActivity(Intent(this, CarActivity::class.java))
     }
 
-    fun onMeatButtonClicked(view: View) {}
-    fun onTrainButtonClicked(view: View) {}
+    fun onMeatButtonClicked(view: View) {
+        startActivity(Intent(this, MeatActivity::class.java))
+
+    }
+    fun onTrainButtonClicked(view: View) {
+        startActivity(Intent(this, TrainActivity::class.java))
+
+    }
     fun onHeatingButtonClicked(view: View) {}
     fun onBusButtonClicked(view: View) {
         startActivity(Intent(this, BusActivity::class.java))
     }
-    fun onElButtonClicked(view: View) {}
+    fun onElButtonClicked(view: View) {
+        startActivity(Intent(this, ElActivity::class.java))
+    }
 }

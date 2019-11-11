@@ -37,8 +37,8 @@ class FlightCo2ViewModel(application: Application) : AndroidViewModel(applicatio
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
-        if(!flightCo2Input.value?.isDigitsOnly()!! || flightCo2Input.value.isNullOrEmpty()){
-            listener?.onFailure("Invalid co2 value entered.")
+        if(flightCo2Input.value.isNullOrEmpty()){
+            listener?.onFailure("Indtast antal km kørt")
             return
         }
 

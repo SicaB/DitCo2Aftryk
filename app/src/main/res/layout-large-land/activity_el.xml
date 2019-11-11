@@ -8,31 +8,31 @@
     <data>
         <variable
                 name="viewmodel"
-                type="com.example.ditco2aftryk.view.viewmodel.MeatViewModel" />
+                type="com.example.ditco2aftryk.view.viewmodel.ElViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/car_co2_layout"
+            android:id="@+id/flight_co2_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorBlack"
-            tools:context=".view.ui.MeatActivity">
+            tools:context=".view.ui.ElActivity">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/back"
-                android:layout_width="68dp"
-                android:layout_height="56dp"
-                android:onClick="onBackButtonClicked"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
                 android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:onClick="onBackButtonClicked"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"/>
+                app:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/home"
-                android:layout_width="68dp"
-                android:layout_height="56dp"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
                 android:onClick="onHomeButtonClicked"
                 android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
@@ -44,61 +44,52 @@
                 android:id="@+id/headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/headline_meat"
+                android:text="@string/headline_el"
                 android:textColor="@color/colorTextfieldLightGreen"
-                android:textSize="28sp"
-                android:layout_marginBottom="600dp"
-                android:layout_marginTop="70dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="45sp"
+                android:layout_marginBottom="200dp"
+                android:layout_marginTop="200dp"
+                app:layout_constraintBottom_toTopOf="@id/enterKWt"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="216dp"
-                android:layout_height="39dp"
-                app:layout_constraintBottom_toTopOf="@+id/enterKgCooked"
-                android:layout_marginTop="160dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
         <EditText
-                android:text="@={viewmodel.meatCo2Input}"
-                android:id="@+id/enterKgCooked"
-                android:layout_width="216dp"
-                android:layout_height="39dp"
-                android:layout_marginBottom="20dp"
+                android:id="@+id/enterKWt"
+                android:layout_width="392dp"
+                android:layout_height="66dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/textfield_color"
                 android:inputType="number|numberDecimal"
+                android:text="@={viewmodel.ElCo2Input}"
                 android:textColor="@color/colorBlack"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
                 android:id="@+id/calculatedCo2TextField"
-                android:layout_width="216dp"
-                android:layout_height="39dp"
+                android:layout_width="392dp"
+                android:layout_height="66dp"
                 android:textColor="@color/colorTextfieldLightGreen"
                 android:textSize="20sp"
                 android:background="@drawable/calculated_co2_field"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="60dp"
                 app:layout_constraintBottom_toTopOf="@id/saveCo2Btn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/enterKgCooked"/>
+                app:layout_constraintTop_toBottomOf="@+id/enterKWt"/>
 
         <TextView
-                android:id="@+id/textKgCooked"
-                android:layout_width="216dp"
-                android:layout_height="20dp"
-                android:text="@string/kg_cooked"
+                android:id="@+id/textKWt"
+                android:layout_width="392dp"
+                android:layout_height="30dp"
+                android:text="@string/km_distance"
                 android:textColor="@color/colorWhite"
-                app:layout_constraintBottom_toTopOf="@+id/enterKgCooked"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/enterKWt"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -106,10 +97,11 @@
 
         <TextView
                 android:id="@+id/co2Emitted"
-                android:layout_width="216dp"
-                android:layout_height="20dp"
+                android:layout_width="392dp"
+                android:layout_height="33dp"
                 android:text="@string/co2_emitted"
                 android:textColor="@color/colorWhite"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -117,12 +109,12 @@
                 app:layout_constraintVertical_bias="1.0" />
 
         <Button
-                android:onClick="@{viewmodel::onSaveCo2ButtonClick}"
                 android:id="@+id/saveCo2Btn"
-                android:layout_width="178dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="320dp"
+                android:layout_width="313dp"
+                android:layout_height="59dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_gradient"
+                android:onClick="@{viewmodel::onSaveCo2ButtonClick}"
                 android:shadowColor="@color/colorBlack"
                 android:shadowDx="4"
                 android:shadowDy="4"
@@ -130,17 +122,19 @@
                 android:text="@string/count_co2_btn"
                 android:textAllCaps="false"
                 android:textColor="@color/colorButtonText"
-                android:textSize="20sp"
+                android:textSize="34sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/imageView"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calculatedCo2TextField" />
 
         <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="210dp"
-                android:layout_height="210dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

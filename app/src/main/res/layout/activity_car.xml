@@ -73,6 +73,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/textfield_color"
                 android:inputType="number|numberDecimal"
+                android:textColor="@color/colorBlack"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -140,11 +141,10 @@
                 android:id="@+id/imageView"
                 android:layout_width="210dp"
                 android:layout_height="210dp"
-                android:layout_marginTop="400dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/saveCo2Btn"
                 app:srcCompat="@drawable/co2windmill" />
 
 

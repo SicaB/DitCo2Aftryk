@@ -39,8 +39,8 @@ class BusViewModel (application: Application) : AndroidViewModel(application) {
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
-        if(!busCo2Input.value?.isDigitsOnly()!! || busCo2Input.value.isNullOrEmpty()){
-            listener?.onFailure("Invalid co2 value entered.")
+        if(busCo2Input.value.isNullOrEmpty()){
+            listener?.onFailure("Indtast antal km kørt.")
             return
         }
 

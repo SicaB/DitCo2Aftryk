@@ -1,35 +1,31 @@
 package com.example.ditco2aftryk.view.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.ditco2aftryk.R
-import com.example.ditco2aftryk.databinding.ActivityTrainBinding
+import com.example.ditco2aftryk.databinding.ActivityElBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
-import com.example.ditco2aftryk.view.viewmodel.TrainViewModel
-import kotlinx.android.synthetic.main.activity_bus.*
-import kotlinx.android.synthetic.main.activity_flight_co2.*
-import kotlinx.android.synthetic.main.activity_flight_co2.back
-import kotlinx.android.synthetic.main.activity_flight_co2.calculatedCo2TextField
-import kotlinx.android.synthetic.main.activity_flight_co2.home
+import com.example.ditco2aftryk.view.viewmodel.ElViewModel
+import kotlinx.android.synthetic.main.activity_el.*
 
-class TrainActivity : AppCompatActivity(), Listener, Actionbar {
+class ElActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // create the viewModel
         val viewModel = ViewModelProviders.of(this).get(
-            TrainViewModel::class.java)
+            ElViewModel::class.java)
 
         // Bind this activity to the layout xml file using databinding
-        val binding : ActivityTrainBinding = DataBindingUtil.setContentView(this, R.layout.activity_train)
+        val binding : ActivityElBinding = DataBindingUtil.setContentView(this, R.layout.activity_el)
 
         // bind this activity to the viewModel
         binding.viewmodel = viewModel
@@ -41,7 +37,7 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
         back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
-        enterKmDriven.addTextChangedListener(object : TextWatcher {
+        enterKWt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -49,10 +45,10 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (enterKmDriven.text.isNotEmpty()) {
-                    val kmDriven = enterKmDriven.text.toString().toDouble()
-                    val calculatedBusCo2 = kmDriven * 0.065
-                    calculatedCo2TextField.text = String.format("%.2f", calculatedBusCo2)
+                if (enterKWt.text.isNotEmpty()) {
+                    val kWt = enterKWt.text.toString().toDouble()
+                    val calculatedElCo2 = kWt * 0.233
+                    calculatedCo2TextField.text = String.format("%.2f", calculatedElCo2)
                 }
             }
         })
@@ -67,7 +63,7 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
     }
 
     override fun onSuccess() {
-        enterKmDriven.hideKeyboard()
+        enterKWt.hideKeyboard()
 
         toast("Dit co2 aftryk er gemt")
         // intent is used to start a new activity
@@ -79,4 +75,5 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
     override fun onFailure(message: String) {
         toast(message)
     }
+
 }

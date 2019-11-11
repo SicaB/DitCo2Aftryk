@@ -50,11 +50,9 @@
                 android:layout_marginBottom="600dp"
                 android:layout_marginTop="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.381" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
                 android:text="@={viewmodel.flightCo2Input}"
@@ -65,6 +63,7 @@
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/textfield_color"
                 android:inputType="number|numberDecimal"
+                android:textColor="@color/colorBlack"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -132,11 +131,10 @@
                 android:id="@+id/imageView"
                 android:layout_width="210dp"
                 android:layout_height="210dp"
-                android:layout_marginTop="380dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/saveCo2Btn"
                 app:srcCompat="@drawable/co2windmill" />
 
 

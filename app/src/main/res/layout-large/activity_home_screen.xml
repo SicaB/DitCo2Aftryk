@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="0"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="60dp">
 
             <TextView
                     android:id="@+id/headline"
@@ -37,7 +37,7 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/headline_today"
                     android:textColor="@color/colorTextfieldLightGreen"
-                    android:textSize="16sp" />
+                    android:textSize="38sp" />
 
             <TextView
                     android:id="@+id/co2counter"
@@ -46,24 +46,24 @@
                     android:layout_gravity="center"
                     android:text="@{viewmodel.accumulatedCo2Count}"
                     android:textColor="@color/colorWhite"
-                    android:textSize="24sp"
+                    android:textSize="38sp"
                     tools:text="0" />
 
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_weight="8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="431dp"
+                android:layout_weight="8">
 
             <ProgressBar
                     android:id="@+id/circle"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="587dp"
+                    android:layout_height="504dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/circle_shape"
                     android:indeterminate="false"
-                    android:layout_margin="10dp"
                     android:max="46000"
                     android:progress="0"
                     android:progressDrawable="@drawable/circular_progress_bar"
@@ -71,51 +71,48 @@
                     app:layout_constraintBottom_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent" />
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.491" />
 
             <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="110dp"
-                    app:srcCompat="@drawable/carbon_footprint"
+                    android:layout_width="402dp"
+                    android:layout_height="300dp"
                     app:layout_constraintBottom_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:srcCompat="@drawable/carbon_footprint" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-            <Button
-                    android:id="@+id/enterCo2Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginEnd="60dp"
-                    android:layout_marginBottom="50dp"
-                    android:background="@drawable/button_gradient"
-                    android:shadowColor="@color/colorBlack"
-                    android:shadowDx="4"
-                    android:shadowDy="4"
-                    android:shadowRadius="8"
-                    android:text="@string/enter_co2_btn"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorButtonText"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@id/frame_lineChart"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView"/>
+        <Button
+                android:id="@+id/enterCo2Button"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginEnd="160dp"
+                android:background="@drawable/button_gradient"
+                android:shadowColor="@color/colorBlack"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="@string/enter_co2_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/colorButtonText"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/frame_lineChart"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView" />
 
         <FrameLayout
                 android:id="@+id/frame_lineChart"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="2"
+                android:layout_height="320dp"
+                android:layout_marginTop="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

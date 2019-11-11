@@ -17,10 +17,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.ui.BusActivity"></activity>
+        <activity android:name=".view.ui.BusActivity" />
         <activity android:name=".view.ui.TrainActivity" />
         <activity android:name=".view.ui.CarActivity" />
         <activity android:name=".view.ui.MeatActivity" />
+        <activity android:name=".view.ui.ElActivity" />
+        <activity android:name=".view.ui.HeatingActivity" />
         <activity android:name=".view.ui.ClothesActivity" />
         <activity android:name=".view.ui.SplashScreenActivity">
             <intent-filter>

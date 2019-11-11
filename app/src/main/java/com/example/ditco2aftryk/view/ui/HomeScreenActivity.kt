@@ -1,9 +1,6 @@
 package com.example.ditco2aftryk.view.ui
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -15,20 +12,13 @@ import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityHomeScreenBinding
 import com.example.ditco2aftryk.view.viewmodel.HomeScreenViewModel
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.formatter.LargeValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlinx.android.synthetic.main.activity_home_screen.*
-import java.lang.Double.parseDouble
-import java.lang.Integer.parseInt
-import java.security.KeyStore
-import kotlin.math.log
 
 class HomeScreenActivity : AppCompatActivity(), Listener {
 
@@ -60,6 +50,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
                 var newNumber = (circleProcess.toInt())
                 circle?.progress = newNumber
                 Log.d("mytag", "number $newNumber")
+
             }
 
         }
@@ -83,7 +74,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
         yValues.add(Entry(3f, 8f, "3"))
         yValues.add(Entry(4f, 25f, "4"))
         yValues.add(Entry(5f, 10f, "5"))
-        yValues.add(Entry(6f, 22f, "søn."))
+        yValues.add(Entry(6f, 22f, "6"))
 
         val set1: LineDataSet
         set1 = LineDataSet(yValues, "DataSet 1")

@@ -13,14 +13,14 @@ import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
 
-class CarViewModel (application: Application) : AndroidViewModel(application) {
+class TrainViewModel(application: Application) : AndroidViewModel(application) {
 
     // ViewModel maintains a reference to the repository to get data.
     private val repository: Co2CountRepository
 
     var listener: Listener? = null
 
-    val carCo2Input = MutableLiveData<String>()
+    val trainCo2Input = MutableLiveData<String>()
 
     private lateinit var input: Co2Count
 
@@ -31,20 +31,20 @@ class CarViewModel (application: Application) : AndroidViewModel(application) {
         repository = Co2CountRepository(co2CountDao)
     }
 
-    // Calculation of car co2 based on input
-    fun calculateCarCo2(input: String) : String{
-        val carCo2InGram = input.toDouble() * 110
-        return carCo2InGram.toString()
+    // Calculation of train co2 based on input
+    fun calculateTrainCo2(input: String) : String{
+        val busCo2InGram = input.toDouble() * 65
+        return busCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
-        if(carCo2Input.value.isNullOrEmpty()){
+        if(trainCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast antal km kørt.")
             return
         }
 
-        input = Co2Count(0, calculateCarCo2(carCo2Input.value!!))
+        input = Co2Count(0, calculateTrainCo2(trainCo2Input.value!!))
         insert(input)
         listener?.onSuccess()
     }
@@ -54,5 +54,7 @@ class CarViewModel (application: Application) : AndroidViewModel(application) {
         Log.d("MyTag", "Inserted")
         repository.saveCo2Count(co2Count)
     }
+
+
 
 }

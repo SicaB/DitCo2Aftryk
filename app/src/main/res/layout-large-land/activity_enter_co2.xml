@@ -54,7 +54,7 @@
     <GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.8"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -64,7 +64,7 @@
                 android:id="@+id/headline_transport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="160dp"
                 android:text="@string/headline_transport"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
@@ -73,7 +73,7 @@
                 android:id="@+id/headline_consumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="110dp"
+                android:layout_marginStart="300dp"
                 android:text="@string/headline_consumption"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
@@ -117,19 +117,10 @@
 
                 <ImageView
                         android:id="@+id/carBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_car"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/car_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -160,19 +151,10 @@
 
                 <ImageView
                         android:id="@+id/clothingBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_clothes"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/clothes_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -204,19 +186,10 @@
 
                 <ImageView
                         android:id="@+id/busBtn"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_bus"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/bus_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -247,19 +220,10 @@
 
                 <ImageView
                         android:id="@+id/meatBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_meat"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/meat_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -291,19 +255,10 @@
 
                 <ImageView
                         android:id="@+id/trainBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_train"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/train_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -321,7 +276,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onElButtonClicked"
+                android:onClick="onHeatingButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
                 app:cardCornerRadius="20dp">
 
@@ -333,20 +288,11 @@
                     android:orientation="vertical">
 
                 <ImageView
-                        android:id="@+id/elBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/heatingBtn"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_el"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/el_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:background="@drawable/ic_heating"/>
 
             </LinearLayout>
 
@@ -381,19 +327,10 @@
 
                 <ImageView
                         android:id="@+id/flightBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_plane" />
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/plane_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -411,7 +348,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onHeatingButtonClicked"
+                android:onClick="onElButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
                 app:cardCornerRadius="20dp">
 
@@ -423,25 +360,15 @@
                     android:orientation="vertical">
 
                 <ImageView
-                        android:id="@+id/heatingBtn"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/elBtn"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_heating"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/heating_btn"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:background="@drawable/ic_el"/>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
 
 
     </GridLayout>

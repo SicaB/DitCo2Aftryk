@@ -11,16 +11,16 @@
     <string name="headline_train">Tog Transport</string>
     <string name="headline_bus">Bus Transport</string>
     <string name="headline_clothes">Tøj Indkøb</string>
+    <string name="headline_meat">Kød forbrug</string>
+    <string name="headline_el">El forbrug</string>
+    <string name="headline_heating">Varme forbrug</string>
 
     <!-- Buttons -->
     <string name="enter_co2_btn">Indtast co2</string>
     <string name="plane_btn">Fly</string>
     <string name="car_btn">Bil</string>
-    <string name="motorcycle_btn">Motorcykel</string>
-    <string name="moppet_btn">Knallert</string>
     <string name="train_btn">Tog</string>
     <string name="bus_btn">Bus</string>
-    <string name="ferry_btn">Færge</string>
     <string name="el_btn">El</string>
     <string name="heating_btn">Varme</string>
     <string name="clothes_btn">Tøj</string>
@@ -31,5 +31,7 @@
     <string name="hours_flown">Antal fløjet timer</string>
     <string name="co2_emitted">Udledt co2 i kg</string>
     <string name="km_distance">Antal km kørt</string>
+    <string name="kg_cooked">Antal kg tilberedt</string>
+    <string name="kWt">Antal kWt</string>
 
 </resources>
