@@ -24,6 +24,7 @@
         <activity android:name=".view.ui.ElActivity" />
         <activity android:name=".view.ui.HeatingActivity" />
         <activity android:name=".view.ui.ClothesActivity" />
+
         <activity android:name=".view.ui.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".view.ui.FlightCo2Activity" />
         <activity android:name=".view.ui.EnterCo2Activity" />
         <activity android:name=".view.ui.HomeScreenActivity" />

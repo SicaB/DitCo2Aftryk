@@ -57,7 +57,7 @@ dependencies {
         coroutines = '1.2.0',
         materialVersion = '1.2.0-alpha01',
         kodeinVersion = '6.2.1',
-        navigationArchVersion = '2.2.0-rc01',
+        navigationArchVersion = '2.2.0-rc02',
         lottieVersion = '3.1.0',
         firebaseVersion = '19.2.0',
         crashlyticsVersion = '2.10.1'
