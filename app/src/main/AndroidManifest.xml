@@ -36,6 +36,9 @@
         <activity android:name=".view.ui.FlightCo2Activity" />
         <activity android:name=".view.ui.EnterCo2Activity" />
         <activity android:name=".view.ui.HomeScreenActivity" />
+
+        <receiver android:name=".utils.AlarmReceiver"/>
+        <service android:name=".model.repositories.Co2CountRepository$AlarmService" />
     </application>
 
 </manifest>

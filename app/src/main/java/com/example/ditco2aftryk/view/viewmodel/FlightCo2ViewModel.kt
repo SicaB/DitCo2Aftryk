@@ -3,7 +3,6 @@ package com.example.ditco2aftryk.view.viewmodel
 import android.app.Application
 import android.util.Log
 import android.view.View
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.*
 import com.example.ditco2aftryk.model.AppDatabase
 import com.example.ditco2aftryk.model.entities.Co2Count
@@ -26,7 +25,8 @@ class FlightCo2ViewModel(application: Application) : AndroidViewModel(applicatio
         // Gets reference to getCo2CountDao from AppDatabase to construct
         // the correct Co2CountRepository.
         val co2CountDao = AppDatabase.invoke(application).getCo2CountDao()
-        repository = Co2CountRepository(co2CountDao)
+        val dailyCo2CountDao = AppDatabase.invoke(application).getDailyCo2CountDao()
+        repository = Co2CountRepository(co2CountDao, dailyCo2CountDao)
     }
 
     // Calculation of flight co2 based on input

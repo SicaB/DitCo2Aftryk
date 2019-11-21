@@ -16,13 +16,10 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
 
 //        // Actionbar
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
-        back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
     }
 
-
     override fun onBackButtonClicked(v: View?){
-        startActivity(Intent(this, HomeScreenActivity::class.java))
     }
 
     override fun onHomeButtonClicked(v: View?){

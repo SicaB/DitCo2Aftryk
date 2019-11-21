@@ -1,5 +1,8 @@
 package com.example.ditco2aftryk.view.ui
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityHomeScreenBinding
+import com.example.ditco2aftryk.utils.AlarmReceiver
 import com.example.ditco2aftryk.view.viewmodel.HomeScreenViewModel
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -17,10 +21,18 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.activity_home_screen.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class HomeScreenActivity : AppCompatActivity(), Listener {
+class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedListener {
+
+    private var alarmMgr: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
+    var context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,26 +49,32 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
 
         viewModel.listener = this
 
-
         // Create the observer which updates the UI
         val co2CountObserver = Observer<String> { newCount ->
             co2counter.text = "0.0 Kg"
             // Update UI with current data
             if (newCount != null) {
-                co2counter.text = (String.format("%.2f", newCount.toDouble()/1000) + " Kg")
+                co2counter.text = (String.format("%.2f", newCount.toDouble()/1000) + " kg")
             }
             val circleProcess: Double? = newCount?.toDouble()
             if (circleProcess != null) {
-                var newNumber = (circleProcess.toInt())
+                val newNumber = (circleProcess.toInt())
                 circle?.progress = newNumber
                 Log.d("mytag", "number $newNumber")
-
             }
+        }
 
+        // Create the observer which updates the UI
+        val dailyCo2CountObserver = Observer<String> {newCount ->
+            dailyCo2counter.text = "0.0 kg"
+            if(newCount!= null){
+                dailyCo2counter.text = (String.format("%.2f", newCount.toDouble()/1000) + " Kg")
+            }
         }
 
         // Observe the LiveData, passing in this activity as the LifeCycleOwner and the observer.
         viewModel.accumulatedCo2Count.observe(this, co2CountObserver)
+        viewModel.dailyCo2Count.observe(this, dailyCo2CountObserver)
 
         // start new activity when clicking on Enter co2 button
         enterCo2Button.setOnClickListener {
@@ -80,13 +98,16 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
         set1 = LineDataSet(yValues, "DataSet 1")
 
         // Set preferences
-        set1.color = ContextCompat.getColor(this, R.color.colorBlack)
+        set1.color = ContextCompat.getColor(this, R.color.colorButtonLightGreen)
         set1.setCircleColor(ContextCompat.getColor(this, R.color.colorWhite))
-        set1.lineWidth = 2f
-        set1.circleRadius = 4f
-        set1.setDrawCircleHole(false)
+        set1.lineWidth = 5f
+        set1.circleRadius = 5f
         set1.valueTextSize = 0f
+        set1.setDrawCircleHole(true)
         set1.setDrawFilled(false)
+        set1.setDrawHighlightIndicators(false)
+        set1.isHighlightEnabled = true
+        set1.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         val dataSets = ArrayList<ILineDataSet>()
         dataSets.add(set1)
@@ -96,7 +117,9 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
         lineChart?.data = data
         lineChart?.description?.isEnabled = false
         lineChart?.legend?.isEnabled = false
-        lineChart?.setPinchZoom(true)
+        lineChart?.setPinchZoom(false)
+
+        lineChart?.setOnChartValueSelectedListener(this)
 
         // position of x-axis and counts of labels
         lineChart?.xAxis?.labelCount = 5
@@ -110,7 +133,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
 
         // Text customization
         lineChart?.xAxis?.textColor = ContextCompat.getColor(this, R.color.colorWhite)
-        lineChart?.xAxis?.textSize = 11f
+        lineChart?.xAxis?.textSize = 12f
 
         // array to hold week days
         val weekDays = ArrayList<String>()
@@ -126,23 +149,64 @@ class HomeScreenActivity : AppCompatActivity(), Listener {
         lineChart?.xAxis?.valueFormatter = IndexAxisValueFormatter(weekDays)
 
         // Grid customization
-        lineChart?.axisRight?.enableGridDashedLine(5f, 5f, 0f)
-        lineChart?.axisLeft?.enableGridDashedLine(5f, 5f, 0f)
-        lineChart?.xAxis?.enableGridDashedLine(5f, 5f, 0f)
-        lineChart?.xAxis?.enableAxisLineDashedLine(5f, 5f, 0f)
+//        lineChart?.axisRight?.enableGridDashedLine(5f, 5f, 0f)
+//        lineChart?.axisLeft?.enableGridDashedLine(5f, 5f, 0f)
+//        lineChart?.xAxis?.enableGridDashedLine(5f, 5f, 0f)
+        lineChart?.xAxis?.enableAxisLineDashedLine(8f, 18f, 0f)
         lineChart?.xAxis?.gridColor = ContextCompat.getColor(this, R.color.colorBlack)
-        lineChart?.xAxis?.gridLineWidth = 1.5f
-        lineChart?.xAxis?.axisLineColor = ContextCompat.getColor(this, R.color.colorBlack)
-        lineChart?.xAxis?.axisLineWidth = 1f
+        lineChart?.xAxis?.gridLineWidth = 2f
+        lineChart?.xAxis?.axisLineColor = ContextCompat.getColor(this, R.color.colorWhite)
+        lineChart?.xAxis?.axisLineWidth = 2f
 
+        // Alarm manager.
+        alarmMgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
+            //intent.putExtra("accumulatedCountForTheDay", viewModel.accumulatedCo2Count)
+            PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
+        }
+
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 20)
+            set(Calendar.MINUTE, 52)
+            set(Calendar.SECOND, 1)
+        }
+
+        //make sure you aren't setting alarm for earlier today
+        checkTime(calendar)
+
+        alarmMgr?.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            alarmIntent
+        )
+    }
+
+    //ensure that we don't set reminder for the past
+    private fun checkTime(reminder: Calendar) {
+        val now = Calendar.getInstance()
+        if (reminder.before(now)) {
+            val alarmForFollowingDay = reminder.timeInMillis + 86400000L
+            reminder.timeInMillis = alarmForFollowingDay
+        }
+    }
+
+    override fun onNothingSelected() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onValueSelected(e: Entry?, h: Highlight?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onFailure(message: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 }

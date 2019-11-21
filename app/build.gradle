@@ -13,7 +13,7 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.ditco2aftryk"
+        applicationId "com.sicacreations.ditco2aftryk"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -104,6 +104,9 @@ dependencies {
 
     // MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // CustomGauge
+    implementation 'pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

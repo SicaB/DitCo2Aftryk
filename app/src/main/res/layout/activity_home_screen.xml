@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="10"
             android:background="@drawable/background_gradient"
             tools:context=".view.ui.HomeScreenActivity">
 
@@ -26,8 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="0"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="25dp">
 
             <TextView
                     android:id="@+id/headline"
@@ -47,12 +45,12 @@
                     android:text="@{viewmodel.accumulatedCo2Count}"
                     android:textColor="@color/colorWhite"
                     android:textSize="24sp"
-                    tools:text="0" />
+                    />
 
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_weight="8"
+                android:layout_weight="150"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -63,7 +61,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/circle_shape"
                     android:indeterminate="false"
-                    android:layout_margin="10dp"
                     android:max="46000"
                     android:progress="0"
                     android:progressDrawable="@drawable/circular_progress_bar"
@@ -77,14 +74,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toTopOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:layout_constraintVertical_bias="0.494">
+                    app:layout_constraintTop_toBottomOf="parent">
 
                 <Space
-                        android:layout_width="10dp"
+                        android:layout_width="80dp"
                         android:layout_height="10dp"
                         android:layout_weight="1" />
 
@@ -96,7 +91,7 @@
                         app:srcCompat="@drawable/carbon_footprint" />
 
                 <Space
-                        android:layout_width="10dp"
+                        android:layout_width="80dp"
                         android:layout_height="10dp"
                         android:layout_weight="1" />
 
@@ -106,14 +101,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
             <Button
                     android:id="@+id/enterCo2Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginEnd="60dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_width="230dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_horizontal"
                     android:background="@drawable/button_gradient"
                     android:shadowColor="@color/colorBlack"
                     android:shadowDx="4"
@@ -123,18 +122,29 @@
                     android:textAllCaps="false"
                     android:textColor="@color/colorButtonText"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@id/frame_lineChart"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView"/>
+                    android:textStyle="bold" />
 
-        <FrameLayout
+
+        </LinearLayout>
+
+        <TextView
+                android:text="@{viewmodel.accumulatedCo2Count}"
+                android:id="@+id/dailyCo2counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                tools:text="0" />
+
+
+        <LinearLayout
                 android:id="@+id/frame_lineChart"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
-                android:layout_weight="2"
+                android:layout_weight="220"
+                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -146,7 +156,7 @@
                     android:layout_height="match_parent" />
 
 
-        </FrameLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

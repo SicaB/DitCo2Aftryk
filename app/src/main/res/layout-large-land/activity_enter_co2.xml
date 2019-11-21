@@ -5,7 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorBlack"
         tools:context=".view.ui.EnterCo2Activity">
@@ -14,17 +13,6 @@
             android:layout_weight="1.8"
             android:layout_width="match_parent"
             android:layout_height="0dp">
-
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/back"
-                android:layout_width="68dp"
-                android:layout_height="56dp"
-                android:onClick="onBackButtonClicked"
-                android:background="?attr/colorPrimary"
-                android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"/>
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/home"
@@ -43,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/headline_choose"
                 android:textColor="@color/colorTextfieldLightGreen"
-                android:textSize="28sp"
+                android:textSize="46sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -54,41 +42,61 @@
     <GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
             android:rowCount="1">
 
-        <TextView
-                android:id="@+id/headline_transport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="160dp"
-                android:text="@string/headline_transport"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp" />
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginLeft="16dp"
+                android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/headline_consumption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="300dp"
-                android:text="@string/headline_consumption"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp" />
+            <TextView
+                    android:id="@+id/headline_transport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/headline_transport"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="36sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/headline_consumption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/headline_consumption"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="36sp" />
+
+        </LinearLayout>
+
 
     </GridLayout>
 
     <GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
             android:layout_weight="8"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
-            android:padding="5dp"
             android:rowCount="4">
 
         <!-- Row 1 -->
@@ -106,21 +114,30 @@
                 android:focusable="true"
                 android:onClick="onCarButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                 <ImageView
                         android:id="@+id/carBtn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_car"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/car_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -140,21 +157,30 @@
                 android:focusable="true"
                 android:onClick="onClothesButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                 <ImageView
                         android:id="@+id/clothingBtn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_clothes"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/clothes_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -175,21 +201,30 @@
                 android:focusable="true"
                 android:onClick="onBusButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                 <ImageView
                         android:id="@+id/busBtn"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_bus"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/bus_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -209,21 +244,30 @@
                 android:focusable="true"
                 android:onClick="onMeatButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                 <ImageView
                         android:id="@+id/meatBtn"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_meat"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/meat_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -244,21 +288,30 @@
                 android:focusable="true"
                 android:onClick="onTrainButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                 <ImageView
                         android:id="@+id/trainBtn"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_train"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/train_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -276,23 +329,32 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onHeatingButtonClicked"
+                android:onClick="onElButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                 <ImageView
-                        android:id="@+id/heatingBtn"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:id="@+id/elBtn"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_heating"/>
+                        android:background="@drawable/ic_el"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/el_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -321,16 +383,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     >
 
                 <ImageView
                         android:id="@+id/flightBtn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/ic_plane" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/plane_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -348,27 +419,37 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onElButtonClicked"
+                android:onClick="onHeatingButtonClicked"
                 app:cardBackgroundColor="@color/colorDark"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="16dp">
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                 <ImageView
-                        android:id="@+id/elBtn"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:id="@+id/heatingBtn"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_el"/>
+                        android:background="@drawable/ic_heating"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/heating_btn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
 
 
     </GridLayout>

@@ -1,7 +1,6 @@
 package com.example.ditco2aftryk.model.entities
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "daily_co2_counts")
 data class DailyCo2Count(@PrimaryKey(autoGenerate = true)

@@ -28,7 +28,8 @@ class TrainViewModel(application: Application) : AndroidViewModel(application) {
         // Gets reference to getCo2CountDao from AppDatabase to construct
         // the correct Co2CountRepository.
         val co2CountDao = AppDatabase.invoke(application).getCo2CountDao()
-        repository = Co2CountRepository(co2CountDao)
+        val dailyCo2CountDao = AppDatabase.invoke(application).getDailyCo2CountDao()
+        repository = Co2CountRepository(co2CountDao, dailyCo2CountDao)
     }
 
     // Calculation of train co2 based on input
