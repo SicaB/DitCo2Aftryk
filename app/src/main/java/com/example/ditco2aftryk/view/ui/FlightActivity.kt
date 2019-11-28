@@ -9,26 +9,26 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.ditco2aftryk.R
-import com.example.ditco2aftryk.databinding.ActivityFlightCo2Binding
+import com.example.ditco2aftryk.databinding.ActivityFlightBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
-import com.example.ditco2aftryk.view.viewmodel.FlightCo2ViewModel
-import kotlinx.android.synthetic.main.activity_flight_co2.*
-import kotlinx.android.synthetic.main.activity_flight_co2.back
-import kotlinx.android.synthetic.main.activity_flight_co2.home
+import com.example.ditco2aftryk.view.viewmodel.FlightViewModel
+import kotlinx.android.synthetic.main.activity_flight.*
+import kotlinx.android.synthetic.main.activity_flight.back
+import kotlinx.android.synthetic.main.activity_flight.home
 
 @Suppress("DEPRECATION")
-class FlightCo2Activity : AppCompatActivity(), Listener, Actionbar{
+class FlightActivity : AppCompatActivity(), Listener, Actionbar{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // create the viewModel
         val viewModel = ViewModelProviders.of(this).get(
-            FlightCo2ViewModel::class.java)
+            FlightViewModel::class.java)
 
         // Bind this activity to the layout xml file using databinding
-        val binding : ActivityFlightCo2Binding = DataBindingUtil.setContentView(this, R.layout.activity_flight_co2)
+        val binding : ActivityFlightBinding = DataBindingUtil.setContentView(this, R.layout.activity_flight)
 
         // bind this activity to the viewModel
         binding.viewmodel = viewModel

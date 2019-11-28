@@ -32,19 +32,19 @@ class ElViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     // Calculation of bus co2 based on input
-    fun calculateBusCo2(input: String) : String{
-        val busCo2InGram = input.toDouble() * 233
-        return busCo2InGram.toString()
+    fun calculateElCo2(input: String) : String{
+        val elCo2InGram = input.toDouble() * 244
+        return elCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
         if(elCo2Input.value.isNullOrEmpty()){
-            listener?.onFailure("Indtast antal km kørt.")
+            listener?.onFailure("Indtast antal kWh.")
             return
         }
 
-        input = Co2Count(0, calculateBusCo2(elCo2Input.value!!))
+        input = Co2Count(0, calculateElCo2(elCo2Input.value!!))
         insert(input)
         listener?.onSuccess()
     }

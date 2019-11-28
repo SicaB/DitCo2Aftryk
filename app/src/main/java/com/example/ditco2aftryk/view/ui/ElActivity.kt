@@ -47,7 +47,7 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (enterKWt.text.isNotEmpty()) {
                     val kWt = enterKWt.text.toString().toDouble()
-                    val calculatedElCo2 = kWt * 0.233
+                    val calculatedElCo2 = kWt * 0.244
                     calculatedCo2TextField.text = String.format("%.2f", calculatedElCo2)
                 }
             }

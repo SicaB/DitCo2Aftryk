@@ -14,10 +14,10 @@ import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
 import com.example.ditco2aftryk.view.viewmodel.TrainViewModel
 import kotlinx.android.synthetic.main.activity_bus.*
-import kotlinx.android.synthetic.main.activity_flight_co2.*
-import kotlinx.android.synthetic.main.activity_flight_co2.back
-import kotlinx.android.synthetic.main.activity_flight_co2.calculatedCo2TextField
-import kotlinx.android.synthetic.main.activity_flight_co2.home
+import kotlinx.android.synthetic.main.activity_flight.*
+import kotlinx.android.synthetic.main.activity_flight.back
+import kotlinx.android.synthetic.main.activity_flight.calculatedCo2TextField
+import kotlinx.android.synthetic.main.activity_flight.home
 
 class TrainActivity : AppCompatActivity(), Listener, Actionbar {
 

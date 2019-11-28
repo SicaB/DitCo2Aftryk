@@ -16,9 +16,9 @@ import com.example.ditco2aftryk.databinding.ActivityMeatBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
 import com.example.ditco2aftryk.view.viewmodel.MeatViewModel
-import kotlinx.android.synthetic.main.activity_flight_co2.back
-import kotlinx.android.synthetic.main.activity_flight_co2.calculatedCo2TextField
-import kotlinx.android.synthetic.main.activity_flight_co2.home
+import kotlinx.android.synthetic.main.activity_flight.back
+import kotlinx.android.synthetic.main.activity_flight.calculatedCo2TextField
+import kotlinx.android.synthetic.main.activity_flight.home
 import kotlinx.android.synthetic.main.activity_meat.*
 
 class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
@@ -43,28 +43,40 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
         back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
-        enterKgCooked.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
+        // ButtonClick
+        var meatType = ""
+        saveCo2Btn.setOnClickListener {
+            viewModel.onSaveCo2ButtonClick(meatType)
+        }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (enterKgCooked.text.isNotEmpty()) {
-                    val kgCooked = enterKgCooked.text.toString().toDouble()
-                    val calculatedMeatCo2 = kgCooked * 19.4
-                    calculatedCo2TextField.text = String.format("%.2f", calculatedMeatCo2)
+        fun textChanged(co2Number: Double) {
+            enterKgCooked.text = null
+            calculatedCo2TextField.text = null
+            enterKgCooked.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
                 }
-            }
-        })
 
-        val sp : Spinner = findViewById(R.id.spinner) as Spinner
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
 
-        val carOptions = arrayOf("Oksekød", "Svinekød", "Kyllingekød", "Lammekød")
-        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1, carOptions)
-        sp.adapter = adapter
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (enterKgCooked.text.isNotEmpty()) {
+                        val kgCooked = enterKgCooked.text.toString().toDouble()
+                        val calculatedMeatCo2 = kgCooked * co2Number
+                        calculatedCo2TextField.text = String.format("%.2f", calculatedMeatCo2)
+                    } else {
+                        calculatedCo2TextField.text = null
+                    }
+                }
+            })
+        }
 
+        val sp : Spinner = findViewById(R.id.spinner)
         sp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 toast("Please select meat type.")
@@ -76,7 +88,24 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
                 position: Int,
                 id: Long
             ) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                when (position) {
+                    0 -> {
+                        textChanged(0.0194)
+                        meatType = "Okse"
+                    }
+                    1 -> {
+                        textChanged(0.0036)
+                        meatType = "Svin"
+                    }
+                    2 -> {
+                        textChanged(0.0034)
+                        meatType = "Kylling"
+                    }
+                    3 -> {
+                        textChanged(0.0145)
+                        meatType = "Lam"
+                    }
+                }
             }
 
         }

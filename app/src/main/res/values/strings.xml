@@ -31,7 +31,36 @@
     <string name="hours_flown">Antal fløjet timer</string>
     <string name="co2_emitted">Udledt co2 i kg</string>
     <string name="km_distance">Antal km kørt</string>
-    <string name="kg_cooked">Antal kg tilberedt</string>
+    <string name="kg_cooked">Antal gram tilberedt</string>
     <string name="kWt">Antal kWt</string>
+    <string name="kg_purchased">Antal kg</string>
+
+    <!-- MenuItems -->
+    <string name="delete_daily_count">Nulstil idag</string>
+    <string name="delete_Weekly_count">Nulstil denne uge</string>
+    <string name="save">Gem og gå til næste dag</string>
+
+    <!-- Spinners -->
+    <string-array name="carOptions">
+        <item>Lille bil</item>
+        <item>Mellemstor bil</item>
+        <item>Stor bil</item>
+        <item>Diesel bil</item>
+        <item>Hybrid bil</item>
+        <item>El-bil</item>
+    </string-array>
+
+    <string-array name="heatingOptions">
+        <item>Fjernvarme</item>
+        <item>Bygas</item>
+        <item>Fjernkøling</item>
+    </string-array>
+
+    <string-array name="meatOptions">
+        <item>Okse</item>
+        <item>Svin</item>
+        <item>Kylling</item>
+        <item>Lam</item>
+    </string-array>
 
 </resources>

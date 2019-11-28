@@ -8,7 +8,7 @@
     <data>
         <variable
                 name="viewmodel"
-                type="com.example.ditco2aftryk.view.viewmodel.FlightCo2ViewModel" />
+                type="com.example.ditco2aftryk.view.viewmodel.FlightViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,27 +16,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorBlack"
-            tools:context=".view.ui.FlightCo2Activity">
+            tools:context=".view.ui.FlightActivity">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/back"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorBlack"
                 android:minHeight="?attr/actionBarSize"
                 android:onClick="onBackButtonClicked"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/home"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:onClick="onHomeButtonClicked"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorBlack"
                 android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 
@@ -64,6 +62,7 @@
                 android:inputType="number|numberDecimal"
                 android:text="@={viewmodel.FlightCo2Input}"
                 android:textColor="@color/colorBlack"
+                android:maxLength="4"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

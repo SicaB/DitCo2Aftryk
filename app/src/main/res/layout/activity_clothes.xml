@@ -8,24 +8,23 @@
     <data>
         <variable
                 name="viewmodel"
-                type="com.example.ditco2aftryk.view.viewmodel.FlightCo2ViewModel" />
+                type="com.example.ditco2aftryk.view.viewmodel.ClothesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/flight_co2_layout"
+            android:id="@+id/clothes_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background_gradient"
-            tools:context=".view.ui.FlightCo2Activity">
+            android:background="@color/colorBlack"
+            tools:context=".view.ui.ClothesActivity">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/back"
                 android:layout_width="68dp"
                 android:layout_height="56dp"
                 android:onClick="onBackButtonClicked"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorBlack"
                 android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -34,9 +33,8 @@
                 android:layout_width="68dp"
                 android:layout_height="56dp"
                 android:onClick="onHomeButtonClicked"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorBlack"
                 android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 
@@ -47,28 +45,27 @@
                 android:text="@string/headline_clothes"
                 android:textColor="@color/colorTextfieldLightGreen"
                 android:textSize="28sp"
-                android:layout_marginBottom="600dp"
-                android:layout_marginTop="70dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
+                android:layout_marginTop="80dp"
+                app:layout_constraintBottom_toTopOf="@+id/enterKgPurchased"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.381" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-                android:text="@={viewmodel.flightCo2Input}"
-                android:id="@+id/enterHoursFlown"
+                android:text="@={viewmodel.clothesCo2Input}"
+                android:id="@+id/enterKgPurchased"
                 android:layout_width="216dp"
                 android:layout_height="39dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="80dp"
                 android:layout_marginBottom="40dp"
                 android:textColor="@color/colorBlack"
                 android:background="@drawable/textfield_color"
+                android:inputType="number|numberDecimal"
+                android:maxLength="4"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/headline"/>
 
         <TextView
                 android:id="@+id/calculatedCo2TextField"
@@ -81,15 +78,15 @@
                 app:layout_constraintBottom_toTopOf="@id/saveCo2Btn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/enterHoursFlown"/>
+                app:layout_constraintTop_toBottomOf="@id/enterKgPurchased"/>
 
         <TextView
-                android:id="@+id/textHoursFlown"
+                android:id="@+id/textKgPurchased"
                 android:layout_width="216dp"
                 android:layout_height="20dp"
-                android:text="@string/hours_flown"
+                android:text="@string/kg_purchased"
                 android:textColor="@color/colorWhite"
-                app:layout_constraintBottom_toTopOf="@id/enterHoursFlown"
+                app:layout_constraintBottom_toTopOf="@id/enterKgPurchased"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -112,7 +109,7 @@
                 android:id="@+id/saveCo2Btn"
                 android:layout_width="178dp"
                 android:layout_height="40dp"
-                android:layout_marginBottom="350dp"
+                android:layout_marginBottom="60dp"
                 android:background="@drawable/button_gradient"
                 android:shadowColor="@color/colorBlack"
                 android:shadowDx="4"
@@ -123,7 +120,7 @@
                 android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/imageView"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calculatedCo2TextField" />
@@ -132,6 +129,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="210dp"
                 android:layout_height="210dp"
+                android:layout_marginBottom="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

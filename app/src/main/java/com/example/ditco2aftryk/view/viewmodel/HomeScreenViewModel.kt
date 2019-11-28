@@ -37,12 +37,23 @@ class HomeScreenViewModel(application: Application) : AndroidViewModel(applicati
         dailyCo2Count = repository.dailySavedCo2Count
     }
 
+    // Function to delete all user input for the day
+    fun deleteCountDay(){
+        repository.deleteAllCo2CountsFromTable()
+    }
 
-//    // Function to insert user input using a coroutine
-//    fun insertDailyCount(dailyCo2Count: DailyCo2Count) = viewModelScope.launch {
-//        Log.d("MyTag", "Inserted")
-//        repository.saveDailyCo2Count(dailyCo2Count)
-//    }
+    // Function to delete all user input for the day
+    fun deleteCountWeek(){
+        repository.deleteAllDailyInsertedCo2Counts()
+    }
+
+    // Function to insert user input using a coroutine
+    fun insertDailyCount() = viewModelScope.launch {
+        val input = DailyCo2Count(0, accumulatedCo2Count.value!!)
+        Log.d("MyTag", "Inserted")
+        repository.saveDailyCo2Count(input)
+        repository.deleteAllCo2CountsFromTable()
+    }
 
 }
 

@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<layout
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-</LinearLayout>
+    <!-- Define ViewModel -->
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.example.ditco2aftryk.view.viewmodel.ClothesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clothes_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack"
+            tools:context=".view.ui.ClothesActivity">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/back"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:background="@color/colorBlack"
+                android:minHeight="?attr/actionBarSize"
+                android:onClick="onBackButtonClicked"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/home"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:onClick="onHomeButtonClicked"
+                android:background="@color/colorBlack"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+                android:id="@+id/headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/headline_clothes"
+                android:textColor="@color/colorTextfieldLightGreen"
+                android:textSize="45sp"
+                app:layout_constraintBottom_toTopOf="@id/enterKgPurchased"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+                android:id="@+id/enterKgPurchased"
+                android:layout_width="392dp"
+                android:layout_height="66dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textfield_color"
+                android:inputType="number|numberDecimal"
+                android:text="@={viewmodel.ClothesCo2Input}"
+                android:textColor="@color/colorBlack"
+                android:maxLength="4"
+                app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/calculatedCo2TextField"
+                android:layout_width="392dp"
+                android:layout_height="66dp"
+                android:textColor="@color/colorTextfieldLightGreen"
+                android:textSize="20sp"
+                android:background="@drawable/calculated_co2_field"
+                android:layout_marginBottom="60dp"
+                app:layout_constraintBottom_toTopOf="@id/saveCo2Btn"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterKgPurchased"/>
+
+        <TextView
+                android:id="@+id/textKgPurchased"
+                android:layout_width="392dp"
+                android:layout_height="30dp"
+                android:text="@string/kg_purchased"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/enterKgPurchased"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+                android:id="@+id/co2Emitted"
+                android:layout_width="392dp"
+                android:layout_height="33dp"
+                android:text="@string/co2_emitted"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+                android:id="@+id/saveCo2Btn"
+                android:layout_width="313dp"
+                android:layout_height="59dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_gradient"
+                android:onClick="@{viewmodel::onSaveCo2ButtonClick}"
+                android:shadowColor="@color/colorBlack"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="@string/count_co2_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/colorButtonText"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/imageView"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calculatedCo2TextField" />
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/saveCo2Btn"
+                app:srcCompat="@drawable/co2windmill" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

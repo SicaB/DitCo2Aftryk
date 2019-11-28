@@ -18,4 +18,7 @@ interface Co2CountDao {
     @Query("SELECT SUM(co2Size) FROM co2_counts")
     fun getAccumulatedCo2Counts() : LiveData<String>
 
+    @Query("SELECT SUM(co2Size) FROM co2_counts")
+    fun getAccumulatedCo2CountsAsString() : String
+
 }

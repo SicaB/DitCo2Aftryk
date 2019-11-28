@@ -19,8 +19,8 @@ class MeatViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: Co2CountRepository
 
     var listener: Listener? = null
-
     val meatCo2Input = MutableLiveData<String>()
+    var meatCo2 = ""
 
     private lateinit var input: Co2Count
 
@@ -32,20 +32,31 @@ class MeatViewModel(application: Application) : AndroidViewModel(application) {
         repository = Co2CountRepository(co2CountDao, dailyCo2CountDao)
     }
 
-    // Calculation of car co2 based on input
-    fun calculateMeatCo2(input: String) : String{
-        val meatCo2InGram = input.toDouble() * 19400
+    // Function to get the correct co2 in gram pr gram meat cooked based on cartype
+    fun getCo2BasedOnMeatType(carTypeInput: String?) {
+        when (carTypeInput) {
+            "Okse" -> meatCo2 = calculateMeatCo2(meatCo2Input.value!!, 19.4)
+            "Svin" -> meatCo2 = calculateMeatCo2(meatCo2Input.value!!, 3.6)
+            "Kylling" -> meatCo2 = calculateMeatCo2(meatCo2Input.value!!, 3.4)
+            "Lam" -> meatCo2 = calculateMeatCo2(meatCo2Input.value!!, 14.5)
+        }
+    }
+
+    // Calculation of co2 based on input
+    fun calculateMeatCo2(input: String, meatTypeInputValue: Double) : String{
+        val meatCo2InGram = input.toDouble() * meatTypeInputValue
         return meatCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
-    fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
+    fun onSaveCo2ButtonClick(meatType: String){
         if(meatCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast mængde kød tilberedt.")
             return
         }
 
-        input = Co2Count(0, calculateMeatCo2(meatCo2Input.value!!))
+        getCo2BasedOnMeatType(meatType)
+        input = Co2Count(0, meatCo2)
         insert(input)
         listener?.onSuccess()
     }

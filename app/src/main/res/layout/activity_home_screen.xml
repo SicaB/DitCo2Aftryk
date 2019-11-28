@@ -24,8 +24,7 @@
                 android:id="@+id/top_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="25dp">
+                android:orientation="vertical">
 
             <TextView
                     android:id="@+id/headline"
@@ -35,7 +34,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/headline_today"
                     android:textColor="@color/colorTextfieldLightGreen"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    />
 
             <TextView
                     android:id="@+id/co2counter"
@@ -127,15 +127,15 @@
 
         </LinearLayout>
 
-        <TextView
-                android:text="@{viewmodel.accumulatedCo2Count}"
-                android:id="@+id/dailyCo2counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="24sp"
-                tools:text="0" />
+<!--        <TextView-->
+<!--                android:text="@{viewmodel.accumulatedCo2Count}"-->
+<!--                android:id="@+id/dailyCo2counter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:textSize="24sp"-->
+<!--                tools:text="0" />-->
 
 
         <LinearLayout
@@ -143,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
-                android:layout_weight="220"
+                android:layout_weight="260"
                 android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

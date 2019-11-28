@@ -17,15 +17,30 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.ui.BusActivity" />
-        <activity android:name=".view.ui.TrainActivity" />
-        <activity android:name=".view.ui.CarActivity" />
-        <activity android:name=".view.ui.MeatActivity" />
-        <activity android:name=".view.ui.ElActivity" />
-        <activity android:name=".view.ui.HeatingActivity" />
-        <activity android:name=".view.ui.ClothesActivity" />
+        <activity android:name=".view.ui.BusActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.TrainActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.CarActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.MeatActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.ElActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.HeatingActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.ClothesActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.FlightActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.EnterCo2Activity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.ui.HomeScreenActivity"
+                android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.ui.SplashScreenActivity">
+        <activity android:name=".view.ui.SplashScreenActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,12 +48,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.ui.FlightCo2Activity" />
-        <activity android:name=".view.ui.EnterCo2Activity" />
-        <activity android:name=".view.ui.HomeScreenActivity" />
 
         <receiver android:name=".utils.AlarmReceiver"/>
-        <service android:name=".model.repositories.Co2CountRepository$AlarmService" />
+        <service android:name=".model.AlarmService" />
     </application>
 
 </manifest>

@@ -3,7 +3,13 @@ package com.example.ditco2aftryk.view.viewmodel
 import android.app.Application
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.core.text.isDigitsOnly
+import androidx.databinding.BindingAdapter
+import androidx.databinding.Observable
+import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -19,8 +25,8 @@ class CarViewModel (application: Application) : AndroidViewModel(application) {
     private val repository: Co2CountRepository
 
     var listener: Listener? = null
-
     val carCo2Input = MutableLiveData<String>()
+    var carCo2 = ""
 
     private lateinit var input: Co2Count
 
@@ -32,20 +38,33 @@ class CarViewModel (application: Application) : AndroidViewModel(application) {
         repository = Co2CountRepository(co2CountDao, dailyCo2CountDao)
     }
 
-    // Calculation of car co2 based on input
-    fun calculateCarCo2(input: String) : String{
-        val carCo2InGram = input.toDouble() * 110
+    // Function to get the correct co2 in gram pr km based on cartype
+    fun getCo2BasedOnCarType(carTypeInput: String?) {
+        when (carTypeInput) {
+            "Lille bil" -> carCo2 = calculateCarCo2(carCo2Input.value!!, 110.0)
+            "Mellemstor bil" -> carCo2 = calculateCarCo2(carCo2Input.value!!, 133.0)
+            "Stor bil" -> carCo2 = calculateCarCo2(carCo2Input.value!!, 183.0)
+            "Diesel bil" -> carCo2 = calculateCarCo2(carCo2Input.value!!, 160.0)
+            "Hybrid bil" -> carCo2 = calculateCarCo2(carCo2Input.value!!, 84.0)
+            "El-bil" -> carCo2 = calculateCarCo2(carCo2Input.value!!, 43.0)
+        }
+    }
+
+    // Calculation of co2 based on input
+    fun calculateCarCo2(input: String, carTypeInputValue: Double) : String{
+        val carCo2InGram = input.toDouble() * carTypeInputValue
         return carCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
-    fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
+    fun onSaveCo2ButtonClick(carType: String){
         if(carCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast antal km kørt.")
             return
         }
 
-        input = Co2Count(0, calculateCarCo2(carCo2Input.value!!))
+        getCo2BasedOnCarType(carType)
+        input = Co2Count(0, carCo2)
         insert(input)
         listener?.onSuccess()
     }

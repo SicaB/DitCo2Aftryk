@@ -23,9 +23,8 @@
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:onClick="onBackButtonClicked"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorBlack"
                 android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -34,9 +33,8 @@
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:onClick="onHomeButtonClicked"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorBlack"
                 android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 
@@ -60,6 +58,7 @@
                 android:layout_height="66dp"
                 app:layout_constraintBottom_toTopOf="@+id/enterKgCooked"
                 android:layout_marginBottom="20dp"
+                android:entries="@array/meatOptions"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/headline"/>
@@ -73,6 +72,7 @@
                 android:inputType="number|numberDecimal"
                 android:textColor="@color/colorBlack"
                 android:layout_marginBottom="20dp"
+                android:maxLength="4"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -120,7 +120,6 @@
                 app:layout_constraintVertical_bias="1.0" />
 
         <Button
-                android:onClick="@{viewmodel::onSaveCo2ButtonClick}"
                 android:id="@+id/saveCo2Btn"
                 android:layout_width="291dp"
                 android:layout_height="70dp"

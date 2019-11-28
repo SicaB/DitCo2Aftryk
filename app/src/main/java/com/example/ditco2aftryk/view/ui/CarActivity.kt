@@ -7,22 +7,18 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.ditco2aftryk.R
-import com.example.ditco2aftryk.databinding.ActivityBusBinding
 import com.example.ditco2aftryk.databinding.ActivityCarBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
 import com.example.ditco2aftryk.view.viewmodel.CarViewModel
-import kotlinx.android.synthetic.main.activity_bus.*
-import kotlinx.android.synthetic.main.activity_car.enterKmDriven
-import kotlinx.android.synthetic.main.activity_flight_co2.*
-import kotlinx.android.synthetic.main.activity_flight_co2.back
-import kotlinx.android.synthetic.main.activity_flight_co2.calculatedCo2TextField
-import kotlinx.android.synthetic.main.activity_flight_co2.home
+import kotlinx.android.synthetic.main.activity_car.*
+import kotlinx.android.synthetic.main.activity_flight.back
+import kotlinx.android.synthetic.main.activity_flight.calculatedCo2TextField
+import kotlinx.android.synthetic.main.activity_flight.home
 
 class CarActivity : AppCompatActivity(), Listener, Actionbar {
 
@@ -46,43 +42,88 @@ class CarActivity : AppCompatActivity(), Listener, Actionbar {
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
         back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
-        enterKmDriven.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (enterKmDriven.text.isNotEmpty()) {
-                    val kmDriven = enterKmDriven.text.toString().toDouble()
-                    val calculatedCarCo2 = kmDriven * 0.11
-                    calculatedCo2TextField.text = String.format("%.2f", calculatedCarCo2)
-                }
-            }
-        })
-
-        val sp : Spinner = findViewById(R.id.spinner) as Spinner
-
-        val carOptions = arrayOf("Lille bil", "Mellemstor bil", "Stor bil", "Diesel bil", "Hybrid bil", "El-bil")
-        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1, carOptions)
-        sp.adapter = adapter
-
-        sp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                toast("Please select a car.")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
+        // ButtonClick
+        var carType = ""
+        saveCo2Btn.setOnClickListener {
+            viewModel.onSaveCo2ButtonClick(carType)
         }
+
+        fun textChanged(co2Number: Double) {
+            enterKmDriven.text = null
+            calculatedCo2TextField.text = null
+            enterKmDriven.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (enterKmDriven.text.isNotEmpty()) {
+                        val kmDriven = enterKmDriven.text.toString().toDouble()
+                        val calculatedCarCo2 = kmDriven * co2Number
+                        calculatedCo2TextField.text = String.format("%.2f", calculatedCarCo2)
+                    } else {
+                        calculatedCo2TextField.text = null
+                    }
+                }
+            })
+        }
+
+        val sp : Spinner = findViewById(R.id.spinner)
+
+//        val carOptions = arrayOf("Lille bil", "Mellemstor bil", "Stor bil", "Diesel bil", "Hybrid bil", "El-bil")
+//        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1, carOptions)
+//        sp.adapter = adapter
+
+            sp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    toast("Please select a car.")
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    when (position) {
+                        0 -> {
+                            textChanged(0.11)
+                            carType = "Lille bil"
+                        }
+                        1 -> {
+                            textChanged(0.133)
+                            carType = "Mellemstor bil"
+                        }
+                        2 -> {
+                            textChanged(0.183)
+                            carType = "Stor bil"
+                        }
+                        3 -> {
+                            textChanged(0.16)
+                            carType = "Diesel bil"
+                        }
+                        4 -> {
+                            textChanged(0.084)
+                            carType = "Hybrid bil"
+                        }
+                        5 -> {
+                            textChanged(0.043)
+                            carType = "El-bil"
+                        }
+                    }
+                }
+
+            }
+
+
     }
 
     override fun onBackButtonClicked(v: View?) {

@@ -10,7 +10,7 @@ import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
 
-class FlightCo2ViewModel(application: Application) : AndroidViewModel(application) {
+class FlightViewModel(application: Application) : AndroidViewModel(application) {
 
     // ViewModel maintains a reference to the repository to get data.
     private val repository: Co2CountRepository

@@ -1,9 +1,5 @@
 package com.example.ditco2aftryk.model.repositories
 
-import android.app.Service
-import android.content.Intent
-import android.os.IBinder
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.ditco2aftryk.model.Co2CountDao
 import com.example.ditco2aftryk.model.DailyCo2CountDao
@@ -26,6 +22,12 @@ open class Co2CountRepository (
 
     // Function to delete co2_counts table
     fun deleteAllCo2CountsFromTable(){
+        co2CountDao.deleteAllCo2CountsFromTable()
+    }
+
+    // Function to delete daily_co2_counts table
+    fun deleteAllDailyInsertedCo2Counts(){
+        dailyCo2CountDao.deleteAllDailyInsertedCo2Counts()
 
     }
 
@@ -34,18 +36,5 @@ open class Co2CountRepository (
         dailyCo2CountDao.insert(dailyCo2Count)
     }
 
-    class AlarmService : Service(){
-
-        override fun onBind(intent: Intent?): IBinder? {
-            return null
-
-        }
-
-        override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-            Log.d("alarmmanager", "Alarm")
-
-            return super.onStartCommand(intent, flags, startId)
-        }
-    }
 }
 
