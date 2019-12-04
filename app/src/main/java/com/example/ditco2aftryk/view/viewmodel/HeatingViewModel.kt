@@ -2,7 +2,6 @@ package com.example.ditco2aftryk.view.viewmodel
 
 import android.app.Application
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -11,6 +10,8 @@ import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HeatingViewModel (application: Application) : AndroidViewModel(application) {
 
@@ -20,7 +21,6 @@ class HeatingViewModel (application: Application) : AndroidViewModel(application
     var listener: Listener? = null
     val heatingCo2Input = MutableLiveData<String>()
     var heatingCo2 = ""
-
     private lateinit var input: Co2Count
 
     init {
@@ -32,7 +32,7 @@ class HeatingViewModel (application: Application) : AndroidViewModel(application
     }
 
     // Function to get the correct co2 in gram pr kWh based on heatingtype
-    fun getCo2BasedOnHeatingType(heatingTypeInput: String?) {
+    private fun getCo2BasedOnHeatingType(heatingTypeInput: String?) {
         when (heatingTypeInput) {
             "Fjernvarme" -> heatingCo2 = calculateHeatingCo2(heatingCo2Input.value!!, 80.0)
             "Bygas" -> heatingCo2 = calculateHeatingCo2(heatingCo2Input.value!!, 142.0)
@@ -41,20 +41,24 @@ class HeatingViewModel (application: Application) : AndroidViewModel(application
     }
 
     // Calculation of co2 based on input
-    fun calculateHeatingCo2(input: String, heatingTypeInput: Double) : String{
+    private fun calculateHeatingCo2(input: String, heatingTypeInput: Double) : String{
         val heatingCo2InGram = input.toDouble() * heatingTypeInput
         return heatingCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(heatingType: String){
+
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+
         if(heatingCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast antal kWh.")
             return
         }
 
         getCo2BasedOnHeatingType(heatingType)
-        input = Co2Count(0, heatingCo2)
+        input = Co2Count(0, heatingCo2, currentDate)
         insert(input)
         listener?.onSuccess()
     }
@@ -64,5 +68,4 @@ class HeatingViewModel (application: Application) : AndroidViewModel(application
         Log.d("MyTag", "Inserted")
         repository.saveCo2Count(co2Count)
     }
-
 }

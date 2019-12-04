@@ -14,7 +14,6 @@ import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
 import com.example.ditco2aftryk.view.viewmodel.TrainViewModel
 import kotlinx.android.synthetic.main.activity_bus.*
-import kotlinx.android.synthetic.main.activity_flight.*
 import kotlinx.android.synthetic.main.activity_flight.back
 import kotlinx.android.synthetic.main.activity_flight.calculatedCo2TextField
 import kotlinx.android.synthetic.main.activity_flight.home

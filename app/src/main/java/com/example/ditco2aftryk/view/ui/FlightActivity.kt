@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_flight.*
 import kotlinx.android.synthetic.main.activity_flight.back
 import kotlinx.android.synthetic.main.activity_flight.home
 
-@Suppress("DEPRECATION")
 class FlightActivity : AppCompatActivity(), Listener, Actionbar{
 
     override fun onCreate(savedInstanceState: Bundle?) {

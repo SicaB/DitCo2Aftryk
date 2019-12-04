@@ -21,4 +21,8 @@ interface Co2CountDao {
     @Query("SELECT SUM(co2Size) FROM co2_counts")
     fun getAccumulatedCo2CountsAsString() : String
 
+    @Query("SELECT date FROM co2_counts ORDER BY id DESC LIMIT 1")
+    fun getDateInTable() : String
+
+
 }

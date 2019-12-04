@@ -1,9 +1,7 @@
 package com.example.ditco2aftryk.model
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.entities.DailyCo2Count
 
@@ -41,7 +39,11 @@ abstract class AppDatabase : RoomDatabase(){
                 .allowMainThreadQueries()
                 .build()
     }
+
 }
+
+
+
 
 //fun getDatabase(context: Context): AppDatabase {
 //    val tempInstance = AppDatabase.INSTANCE

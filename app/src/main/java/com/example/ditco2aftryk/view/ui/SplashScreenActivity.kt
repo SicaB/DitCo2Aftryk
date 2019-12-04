@@ -9,9 +9,9 @@ import com.example.ditco2aftryk.R
 class SplashScreenActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 5000 //5 seconds
+    private val splashDelay: Long = 5000 //5 seconds
 
-    internal val mRunnable: Runnable = Runnable {
+    private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
             val intent = Intent(applicationContext, HomeScreenActivity::class.java)
@@ -28,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
         mDelayHandler = Handler()
 
         //Navigate with delay
-        mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+        mDelayHandler!!.postDelayed(mRunnable, splashDelay)
     }
 
     public override fun onDestroy() {

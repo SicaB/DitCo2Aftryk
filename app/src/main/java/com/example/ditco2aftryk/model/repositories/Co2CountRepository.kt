@@ -13,7 +13,8 @@ open class Co2CountRepository (
 
     // Observed LiveData will notify the observer when the data has changed
     val accumulatedCo2Counts: LiveData<String> = co2CountDao.getAccumulatedCo2Counts()
-    val dailySavedCo2Count: LiveData<String> = dailyCo2CountDao.getDailySavedCo2Count()
+    val dateInCo2CountTable: String = co2CountDao.getDateInTable()
+    val changesToWeeklyCounts: LiveData<List<String>> = dailyCo2CountDao.getChangesToWeeklyCounts()
 
     // Function to save the co2 count in the database
     suspend fun saveCo2Count(co2Count: Co2Count) {
@@ -28,12 +29,21 @@ open class Co2CountRepository (
     // Function to delete daily_co2_counts table
     fun deleteAllDailyInsertedCo2Counts(){
         dailyCo2CountDao.deleteAllDailyInsertedCo2Counts()
+    }
 
+    // Function to delete inputs in database older than one week
+    fun deleteInputsOlderThanOneWeek(){
+        dailyCo2CountDao.deleteInputsOlderThanOneWeek()
     }
 
     // Function to save the daily co2 count in the database
     suspend fun saveDailyCo2Count(dailyCo2Count: DailyCo2Count) {
         dailyCo2CountDao.insert(dailyCo2Count)
+    }
+
+    // Function to insert empty values in database if no value is present
+    fun insertEmptyValuesIntoWeekTable(){
+        dailyCo2CountDao.insertEmptyValuesIntoWeekTable()
     }
 
 }

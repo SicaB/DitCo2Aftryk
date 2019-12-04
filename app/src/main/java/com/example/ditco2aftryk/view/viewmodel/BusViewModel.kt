@@ -3,7 +3,6 @@ package com.example.ditco2aftryk.view.viewmodel
 import android.app.Application
 import android.util.Log
 import android.view.View
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -12,16 +11,15 @@ import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BusViewModel (application: Application) : AndroidViewModel(application) {
 
     // ViewModel maintains a reference to the repository to get data.
     private val repository: Co2CountRepository
-
     var listener: Listener? = null
-
     val busCo2Input = MutableLiveData<String>()
-
     private lateinit var input: Co2Count
 
     init {
@@ -33,21 +31,26 @@ class BusViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     // Calculation of bus co2 based on input
-    fun calculateBusCo2(input: String) : String{
+    private fun calculateBusCo2(input: String) : String{
         val busCo2InGram = input.toDouble() * 69
         return busCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
+
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+
         if(busCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast antal km kørt.")
             return
         }
 
-        input = Co2Count(0, calculateBusCo2(busCo2Input.value!!))
+        input = Co2Count(0, calculateBusCo2(busCo2Input.value!!), currentDate)
         insert(input)
         listener?.onSuccess()
+
     }
 
     // Function to insert user input using a coroutine

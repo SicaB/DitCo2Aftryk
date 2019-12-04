@@ -18,8 +18,26 @@ interface DailyCo2CountDao {
     @Query("DELETE FROM daily_co2_counts")
     fun deleteAllDailyInsertedCo2Counts()
 
-    //This query takes the very first saved data to daily_co2_count table
-    //Which is yesterdays count.
-    @Query("SELECT dailyCo2Size FROM daily_co2_counts order by id DESC limit 1")
-    fun getDailySavedCo2Count() : LiveData<String>
+    @Query("DELETE FROM daily_co2_counts WHERE date < datetime('now', '-1 week')")
+    fun deleteInputsOlderThanOneWeek()
+
+    @Query("SELECT dailyCo2Size FROM daily_co2_counts")
+    fun getChangesToWeeklyCounts() : LiveData<List<String>>
+
+    @Query("""
+        INSERT OR IGNORE INTO daily_co2_counts(id, dailyCo2Size, date) 
+        VALUES
+        ('1', '0', '31/12/9999'),
+        ('2', '0', '31/12/9999'),
+        ('3', '0', '31/12/9999'),
+        ('4', '0', '31/12/9999'),
+        ('5', '0', '31/12/9999'),
+        ('6', '0', '31/12/9999'),
+        ('7', '0', '31/12/9999')
+    """)
+    fun insertEmptyValuesIntoWeekTable()
+
+
+
+
 }

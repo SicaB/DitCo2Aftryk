@@ -2,8 +2,6 @@ package com.example.ditco2aftryk.view.viewmodel
 
 import android.app.Application
 import android.util.Log
-import android.view.View
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -12,16 +10,16 @@ import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MeatViewModel(application: Application) : AndroidViewModel(application) {
 
     // ViewModel maintains a reference to the repository to get data.
     private val repository: Co2CountRepository
-
     var listener: Listener? = null
     val meatCo2Input = MutableLiveData<String>()
     var meatCo2 = ""
-
     private lateinit var input: Co2Count
 
     init {
@@ -33,7 +31,7 @@ class MeatViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // Function to get the correct co2 in gram pr gram meat cooked based on cartype
-    fun getCo2BasedOnMeatType(carTypeInput: String?) {
+    private fun getCo2BasedOnMeatType(carTypeInput: String?) {
         when (carTypeInput) {
             "Okse" -> meatCo2 = calculateMeatCo2(meatCo2Input.value!!, 19.4)
             "Svin" -> meatCo2 = calculateMeatCo2(meatCo2Input.value!!, 3.6)
@@ -43,20 +41,24 @@ class MeatViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // Calculation of co2 based on input
-    fun calculateMeatCo2(input: String, meatTypeInputValue: Double) : String{
+    private fun calculateMeatCo2(input: String, meatTypeInputValue: Double) : String{
         val meatCo2InGram = input.toDouble() * meatTypeInputValue
         return meatCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(meatType: String){
+
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+
         if(meatCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast mængde kød tilberedt.")
             return
         }
 
         getCo2BasedOnMeatType(meatType)
-        input = Co2Count(0, meatCo2)
+        input = Co2Count(0, meatCo2, currentDate)
         insert(input)
         listener?.onSuccess()
     }
@@ -66,7 +68,4 @@ class MeatViewModel(application: Application) : AndroidViewModel(application) {
         Log.d("MyTag", "Inserted")
         repository.saveCo2Count(co2Count)
     }
-
-
-
 }

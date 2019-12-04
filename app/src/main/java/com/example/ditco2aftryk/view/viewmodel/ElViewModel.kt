@@ -11,16 +11,15 @@ import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ElViewModel (application: Application) : AndroidViewModel(application) {
 
     // ViewModel maintains a reference to the repository to get data.
     private val repository: Co2CountRepository
-
     var listener: Listener? = null
-
     val elCo2Input = MutableLiveData<String>()
-
     private lateinit var input: Co2Count
 
     init {
@@ -32,19 +31,23 @@ class ElViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     // Calculation of bus co2 based on input
-    fun calculateElCo2(input: String) : String{
+    private fun calculateElCo2(input: String) : String{
         val elCo2InGram = input.toDouble() * 244
         return elCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
+
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+
         if(elCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast antal kWh.")
             return
         }
 
-        input = Co2Count(0, calculateElCo2(elCo2Input.value!!))
+        input = Co2Count(0, calculateElCo2(elCo2Input.value!!), currentDate)
         insert(input)
         listener?.onSuccess()
     }
@@ -54,5 +57,4 @@ class ElViewModel (application: Application) : AndroidViewModel(application) {
         Log.d("MyTag", "Inserted")
         repository.saveCo2Count(co2Count)
     }
-
 }

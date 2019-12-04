@@ -6,17 +6,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.ditco2aftryk.R
-import com.example.ditco2aftryk.databinding.ActivityElBinding
 import com.example.ditco2aftryk.databinding.ActivityHeatingBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
-import com.example.ditco2aftryk.view.viewmodel.ElViewModel
 import com.example.ditco2aftryk.view.viewmodel.HeatingViewModel
 import kotlinx.android.synthetic.main.activity_el.*
 

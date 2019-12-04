@@ -11,6 +11,8 @@ import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ClothesViewModel (application: Application) : AndroidViewModel(application){
     // ViewModel maintains a reference to the repository to get data.
@@ -31,19 +33,23 @@ class ClothesViewModel (application: Application) : AndroidViewModel(application
     }
 
     // Calculation of co2 based on input
-    fun calculateClothesCo2(input: String) : String{
+    private fun calculateClothesCo2(input: String) : String{
         val clothesCo2InGram = input.toDouble() * 20000
         return clothesCo2InGram.toString()
     }
 
     // Function to save user input in the database when button is clicked
     fun onSaveCo2ButtonClick(@Suppress("UNUSED_PARAMETER")view: View){
+
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+
         if(clothesCo2Input.value.isNullOrEmpty()){
             listener?.onFailure("Indtast antal kg købt.")
             return
         }
 
-        input = Co2Count(0, calculateClothesCo2(clothesCo2Input.value!!))
+        input = Co2Count(0, calculateClothesCo2(clothesCo2Input.value!!), currentDate)
         insert(input)
         listener?.onSuccess()
     }
