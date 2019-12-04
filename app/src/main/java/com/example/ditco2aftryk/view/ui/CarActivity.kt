@@ -53,7 +53,6 @@ class CarActivity : AppCompatActivity(), Listener, Actionbar {
             calculatedCo2TextField.text = null
             enterKmDriven.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
-
                 }
 
                 override fun beforeTextChanged(
@@ -77,10 +76,6 @@ class CarActivity : AppCompatActivity(), Listener, Actionbar {
         }
 
         val sp : Spinner = findViewById(R.id.spinner)
-
-//        val carOptions = arrayOf("Lille bil", "Mellemstor bil", "Stor bil", "Diesel bil", "Hybrid bil", "El-bil")
-//        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1, carOptions)
-//        sp.adapter = adapter
 
             sp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -128,10 +123,12 @@ class CarActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onBackButtonClicked(v: View?) {
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        finish()
     }
 
     override fun onHomeButtonClicked(v: View?) {
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        finish()
     }
 
     override fun onSuccess() {
@@ -142,6 +139,7 @@ class CarActivity : AppCompatActivity(), Listener, Actionbar {
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        finish()
     }
 
     override fun onFailure(message: String) {

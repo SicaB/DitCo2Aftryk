@@ -110,10 +110,12 @@ class HeatingActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        finish()
     }
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        finish()
     }
 
     override fun onSuccess() {
@@ -124,6 +126,7 @@ class HeatingActivity : AppCompatActivity(), Listener, Actionbar {
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        finish()
     }
 
     override fun onFailure(message: String) {

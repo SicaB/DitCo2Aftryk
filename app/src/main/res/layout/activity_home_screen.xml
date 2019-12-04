@@ -142,7 +142,6 @@
                 android:id="@+id/frame_lineChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
                 android:layout_weight="260"
                 android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"

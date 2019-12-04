@@ -14,9 +14,11 @@ import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
 import com.example.ditco2aftryk.view.viewmodel.TrainViewModel
 import kotlinx.android.synthetic.main.activity_bus.*
+import kotlinx.android.synthetic.main.activity_bus.enterKmDriven
 import kotlinx.android.synthetic.main.activity_flight.back
 import kotlinx.android.synthetic.main.activity_flight.calculatedCo2TextField
 import kotlinx.android.synthetic.main.activity_flight.home
+import kotlinx.android.synthetic.main.activity_train.*
 
 class TrainActivity : AppCompatActivity(), Listener, Actionbar {
 
@@ -40,6 +42,8 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
         back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
+        enterKmDriven.text = null
+        calculatedCo2TextField.text = null
         enterKmDriven.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -52,6 +56,8 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
                     val kmDriven = enterKmDriven.text.toString().toDouble()
                     val calculatedBusCo2 = kmDriven * 0.065
                     calculatedCo2TextField.text = String.format("%.2f", calculatedBusCo2)
+                } else {
+                    calculatedCo2TextField.text = null
                 }
             }
         })
@@ -59,10 +65,12 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        finish()
     }
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        finish()
     }
 
     override fun onSuccess() {
@@ -73,6 +81,7 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        finish()
     }
 
     override fun onFailure(message: String) {

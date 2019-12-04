@@ -104,8 +104,8 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         val co2CountObserver = Observer<String> { newCount ->
             if (newCount == null) {
                 co2counter.setText(R.string.defaultValue)
-                resetInputToday()
-                Log.d("alarmmanager", "observer1: nothing saved in todays database")
+                checkWeekdayAndUpdateLineChart(0f)
+                Log.d("TodayObserver", "observer1: nothing saved in todays database")
             } else {
                 // Update UI with current data
                 val co2CounterToday = newCount.toFloat() / 1000
@@ -137,11 +137,11 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         val weeklyCo2CountObserver = Observer<List<String>> { Count ->
             if (Count != null) {
                 for (i in 0..6){
-                    listOfWeekCountsForProgressbar[i] = Count[i].toInt()
+                    listOfWeekCountsForProgressbar[i] = Count[i].toFloat().toInt()
                     listOfWeekCountsForLineChart[i] = Count[i].toFloat()/1000
                     setLineChart(listOfWeekCountsForLineChart)
                 }
-                Log.d("weekObserver", "observer2: new count for weekday $listOfWeekCountsForProgressbar")
+                Log.d("weekObserver", "observer2: new count for weekday $listOfWeekCountsForLineChart")
             }
         }
 
@@ -202,8 +202,8 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         lineChart.axisLeft.isEnabled = false
         lineChart.axisRight.axisMaximum = 46f
         lineChart.axisLeft.axisMaximum = 46f
-        lineChart.axisRight.axisMinimum = 0f
-        lineChart.axisLeft.axisMinimum = 0f
+        lineChart.axisRight.axisMinimum = -2f
+        lineChart.axisLeft.axisMinimum = -2f
 
         // Text customization
         lineChart.xAxis.textColor = ContextCompat.getColor(this, R.color.colorWhite)
@@ -250,34 +250,37 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
     private fun checkWeekdayAndUpdateLineChart(value: Float){
         when (now.get(Calendar.DAY_OF_WEEK)){
             Calendar.MONDAY -> {
-                yValues[0] = Entry(0f, value, "0")
+                inputIntoWeeklyTable = DailyCo2Count(1, value.toString(), currentDate)
                 weekDays[0] = "Idag"
             }
             Calendar.TUESDAY -> {
-                yValues[1] = Entry(1f, value, "1")
+                inputIntoWeeklyTable = DailyCo2Count(2, value.toString(), currentDate)
                 weekDays[1] = "Idag"
             }
             Calendar.WEDNESDAY -> {
-                yValues[2] = Entry(2f, value, "2")
+                inputIntoWeeklyTable = DailyCo2Count(3, value.toString(), currentDate)
                 weekDays[2] = "Idag"
             }
             Calendar.THURSDAY -> {
-                yValues[3] = Entry(3f, value, "3")
+                inputIntoWeeklyTable = DailyCo2Count(4, value.toString(), currentDate)
                 weekDays[3] = "Idag"
             }
             Calendar.FRIDAY -> {
-                yValues[4] = Entry(4f, value, "4")
+                inputIntoWeeklyTable = DailyCo2Count(5, value.toString(), currentDate)
                 weekDays[4] = "Idag"
             }
             Calendar.SATURDAY -> {
-                yValues[5] = Entry(5f, value, "5")
+                inputIntoWeeklyTable = DailyCo2Count(6, value.toString(), currentDate)
                 weekDays[5] = "Idag"
             }
             Calendar.SUNDAY -> {
-                yValues[6] = Entry(6f, value, "6")
+//                yValues[6] = Entry(6f, value, "6")
+//                listOfWeekCountsForLineChart[6] = value
+                inputIntoWeeklyTable = DailyCo2Count(7, value.toString(), currentDate)
                 weekDays[6] = "Idag"
             }
         }
+        viewModel.insertDailyCount(inputIntoWeeklyTable)
         lineChart.invalidate()
     }
 
@@ -312,11 +315,6 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
             binding.viewmodel?.deleteCountDay()
             binding.viewmodel?.deleteCountWeek()
             resetInputsAllWeek()
-            return true
-        }
-        if (id == R.id.item3) {
-//            binding.viewmodel?.insertDailyCount()
-            resetInputToday()
             return true
         }
 
@@ -354,8 +352,9 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
 
     // Function to reset input for today
     private fun resetInputToday(){
-        circle?.progress = 0
+        countTodayForLineChart = 0f
         countTodayForProgressbar = 0
+        circle.progress = 0
         checkWeekdayAndUpdateLineChart(0f)
     }
 
@@ -453,7 +452,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                         headline.setText(R.string.thursday)
                         if (listOfWeekCountsForProgressbar[3] != 0){
                             circle?.progress = listOfWeekCountsForProgressbar[3]
-                            yValues[3] = Entry(3f, listOfWeekCountsForLineChart[3], "2")
+                            yValues[3] = Entry(3f, listOfWeekCountsForLineChart[3], "3")
                             co2counter.text = (String.format("%.2f", listOfWeekCountsForLineChart[3]) + " kg")
                         } else {
                             circle?.progress = 0

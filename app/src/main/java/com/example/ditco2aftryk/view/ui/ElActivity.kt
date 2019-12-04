@@ -37,6 +37,8 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
         back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
+        enterKWt.text = null
+        calculatedCo2TextField.text = null
         enterKWt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -49,6 +51,8 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
                     val kWt = enterKWt.text.toString().toDouble()
                     val calculatedElCo2 = kWt * 0.244
                     calculatedCo2TextField.text = String.format("%.2f", calculatedElCo2)
+                } else {
+                    calculatedCo2TextField.text = null
                 }
             }
         })
@@ -56,10 +60,12 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        finish()
     }
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        finish()
     }
 
     override fun onSuccess() {
@@ -70,6 +76,7 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        finish()
     }
 
     override fun onFailure(message: String) {

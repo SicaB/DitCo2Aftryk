@@ -37,6 +37,8 @@ class ClothesActivity : AppCompatActivity(), Listener, Actionbar {
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
         back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
+        enterKgPurchased.text = null
+        calculatedCo2TextField.text = null
         enterKgPurchased.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -49,6 +51,8 @@ class ClothesActivity : AppCompatActivity(), Listener, Actionbar {
                     val kgPurchased = enterKgPurchased.text.toString().toDouble()
                     val calculatedClothesCo2 = kgPurchased * 20
                     calculatedCo2TextField.text = String.format("%.2f", calculatedClothesCo2)
+                }else {
+                    calculatedCo2TextField.text = null
                 }
             }
         })
@@ -61,16 +65,20 @@ class ClothesActivity : AppCompatActivity(), Listener, Actionbar {
         // intent is used to start a new activity
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
-        startActivity(intent)    }
+        startActivity(intent)
+        finish()
+    }
 
     override fun onFailure(message: String) {
         toast(message)    }
 
     override fun onBackButtonClicked(v: View?) {
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        finish()
     }
 
     override fun onHomeButtonClicked(v: View?) {
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        finish()
     }
 }

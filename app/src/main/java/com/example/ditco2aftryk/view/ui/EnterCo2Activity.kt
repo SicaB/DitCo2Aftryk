@@ -13,6 +13,9 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_co2)
 
+        setResult(123)
+
+
         // Actionbar
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
 
@@ -23,6 +26,7 @@ class EnterCo2Activity : AppCompatActivity(), Actionbar {
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        finish()
     }
 
     fun onFlightButtonClicked(view: View) {

@@ -39,6 +39,8 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
         home.setNavigationIcon(R.drawable.ic_home_black_24dp)
         back.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
+        enterHoursFlown.text = null
+        calculatedCo2TextField.text = null
         enterHoursFlown.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -51,6 +53,8 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
                     val hoursFlown = enterHoursFlown.text.toString().toDouble()
                     val calculatedFlightCo2 = hoursFlown * 92
                     calculatedCo2TextField.text = String.format("%.1f", calculatedFlightCo2)
+                } else {
+                    calculatedCo2TextField.text = null
                 }
             }
         })
@@ -58,10 +62,12 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
 
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        finish()
     }
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        finish()
     }
 
     override fun onSuccess() {
@@ -72,6 +78,7 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        finish()
     }
 
     override fun onFailure(message: String) {

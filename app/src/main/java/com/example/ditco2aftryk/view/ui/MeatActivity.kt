@@ -113,10 +113,15 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
 
     override fun onBackButtonClicked(v: View?) {
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        finish()
     }
 
     override fun onHomeButtonClicked(v: View?) {
-        startActivity(Intent(this, HomeScreenActivity::class.java))
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        // start activity
+        startActivity(intent)
+        finish()
     }
 
     override fun onSuccess() {
