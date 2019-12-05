@@ -113,7 +113,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                 co2counter.text = (String.format("%.2f", co2CounterToday) + " kg")
                 checkWeekdayAndUpdateLineChart(co2CounterToday)
 
-                val circleProcess = newCount.toInt()
+                val circleProcess = newCount.toFloat().toInt()
                 circle.progress = circleProcess
                 countTodayForProgressbar = circleProcess
                 Log.d("TodayObserver", "observer1: new count for today $countTodayForProgressbar")
@@ -190,6 +190,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         lineChart.description?.isEnabled = false
         lineChart.legend.isEnabled = false
         lineChart.setPinchZoom(false)
+        lineChart.setScaleEnabled(false)
 
         // position of x-axis and counts of labels
         lineChart.xAxis.labelCount = 5

@@ -15,6 +15,8 @@
             android:id="@+id/bus_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:background="@color/colorBlack"
             tools:context=".view.ui.BusActivity">
 
@@ -62,6 +64,7 @@
                 android:background="@drawable/textfield_color"
                 android:inputType="number|numberDecimal"
                 android:maxLength="4"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
