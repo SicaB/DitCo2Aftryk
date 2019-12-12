@@ -7,18 +7,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityTrainBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
 import com.example.ditco2aftryk.utils.toast
 import com.example.ditco2aftryk.view.viewmodel.TrainViewModel
-import kotlinx.android.synthetic.main.activity_bus.*
 import kotlinx.android.synthetic.main.activity_bus.enterKmDriven
 import kotlinx.android.synthetic.main.activity_flight.back
 import kotlinx.android.synthetic.main.activity_flight.calculatedCo2TextField
 import kotlinx.android.synthetic.main.activity_flight.home
-import kotlinx.android.synthetic.main.activity_train.*
 
 class TrainActivity : AppCompatActivity(), Listener, Actionbar {
 
@@ -26,7 +24,7 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
         super.onCreate(savedInstanceState)
 
         // create the viewModel
-        val viewModel = ViewModelProviders.of(this).get(
+        val viewModel = ViewModelProvider(this).get(
             TrainViewModel::class.java)
 
         // Bind this activity to the layout xml file using databinding
@@ -52,7 +50,7 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (enterKmDriven.text.isNotEmpty()) {
+                if (enterKmDriven.text.isNotEmpty() && enterKmDriven.text.toString() != ".") {
                     val kmDriven = enterKmDriven.text.toString().toDouble()
                     val calculatedBusCo2 = kmDriven * 0.065
                     calculatedCo2TextField.text = String.format("%.2f", calculatedBusCo2)
@@ -65,12 +63,15 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
+
     }
 
     override fun onSuccess() {
@@ -78,13 +79,22 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
 
         toast("Dit co2 aftryk er gemt")
         // intent is used to start a new activity
+        //val intent = Intent(this, HomeScreenActivity::class.java)
+
         val intent = Intent(this, HomeScreenActivity::class.java)
-        // start activity
+        // set the new task and clear flags
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+
+        // start activity
+        //startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
     override fun onFailure(message: String) {
         toast(message)
     }
+
+
 }

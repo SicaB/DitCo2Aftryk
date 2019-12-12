@@ -5,7 +5,7 @@ import androidx.room.*
 import com.example.ditco2aftryk.model.entities.Co2Count
 import com.example.ditco2aftryk.model.entities.DailyCo2Count
 
-@Database(entities = [Co2Count::class, DailyCo2Count::class], version = 1)
+@Database(entities = [Co2Count::class, DailyCo2Count::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
 
     // In the database we have to implement abstract functions for all dao's in the project

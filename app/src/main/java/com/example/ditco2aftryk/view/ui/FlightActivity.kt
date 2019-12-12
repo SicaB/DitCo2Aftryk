@@ -7,7 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityFlightBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
@@ -23,7 +23,7 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
         super.onCreate(savedInstanceState)
 
         // create the viewModel
-        val viewModel = ViewModelProviders.of(this).get(
+        val viewModel = ViewModelProvider(this).get(
             FlightViewModel::class.java)
 
         // Bind this activity to the layout xml file using databinding
@@ -49,7 +49,7 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (enterHoursFlown.text.isNotEmpty()) {
+                if (enterHoursFlown.text.isNotEmpty() && enterHoursFlown.text.toString() != ".") {
                     val hoursFlown = enterHoursFlown.text.toString().toDouble()
                     val calculatedFlightCo2 = hoursFlown * 92
                     calculatedCo2TextField.text = String.format("%.1f", calculatedFlightCo2)
@@ -62,11 +62,13 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
 
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
@@ -78,6 +80,7 @@ class FlightActivity : AppCompatActivity(), Listener, Actionbar{
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 

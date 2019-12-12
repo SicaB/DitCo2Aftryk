@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityElBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
@@ -21,7 +21,7 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
         super.onCreate(savedInstanceState)
 
         // create the viewModel
-        val viewModel = ViewModelProviders.of(this).get(
+        val viewModel = ViewModelProvider(this).get(
             ElViewModel::class.java)
 
         // Bind this activity to the layout xml file using databinding
@@ -47,7 +47,7 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (enterKWt.text.isNotEmpty()) {
+                if (enterKWt.text.isNotEmpty() && enterKWt.text.toString() != ".") {
                     val kWt = enterKWt.text.toString().toDouble()
                     val calculatedElCo2 = kWt * 0.244
                     calculatedCo2TextField.text = String.format("%.2f", calculatedElCo2)
@@ -60,11 +60,13 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onBackButtonClicked(v: View?){
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
     override fun onHomeButtonClicked(v: View?){
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
@@ -76,6 +78,7 @@ class ElActivity : AppCompatActivity(), Listener, Actionbar {
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 

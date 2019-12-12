@@ -16,6 +16,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
             val intent = Intent(applicationContext, HomeScreenActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
     }

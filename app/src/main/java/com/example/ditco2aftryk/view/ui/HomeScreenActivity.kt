@@ -1,19 +1,21 @@
 package com.example.ditco2aftryk.view.ui
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityHomeScreenBinding
 import com.example.ditco2aftryk.model.entities.DailyCo2Count
@@ -29,15 +31,20 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.activity_home_screen.*
-import kotlinx.android.synthetic.main.activity_home_screen.headline
+import kotlinx.android.synthetic.main.fragment_fragment_one.*
+import kotlinx.android.synthetic.main.fragment_fragment_two.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.Exception
 import kotlin.collections.ArrayList
+
 
 class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedListener {
 
     private val yValues = ArrayList<Entry>()
+    private val yValueHighlight = ArrayList<Entry>()
     private var set1: LineDataSet? = null
+    private var set2: LineDataSet? = null
     private var alarmMgr: AlarmManager? = null
 
     // week days for the diagram
@@ -48,12 +55,16 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
     private var countTodayForProgressbar: Int = 0
     private var listOfWeekCountsForLineChart = ArrayList<Float>()
     private var listOfWeekCountsForProgressbar = ArrayList<Int>()
-
-    private lateinit var viewModel: HomeScreenViewModel
+    private var dataSets = ArrayList<ILineDataSet>()
     private lateinit var binding: ActivityHomeScreenBinding
+    private lateinit var viewModel: HomeScreenViewModel
     private lateinit var lineChart: LineChart
     private lateinit var alarmIntent: PendingIntent
     private lateinit var inputIntoWeeklyTable: DailyCo2Count
+    private lateinit var dialogInfo: Dialog
+    private lateinit var dialogAverageReached: Dialog
+    private lateinit var dialogMaxEntered: Dialog
+    private lateinit var button: Button
     private var now = Calendar.getInstance()
     var context = this
 
@@ -72,9 +83,8 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
 
         // Bind this activity to the layout xml file using databinding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home_screen)
-
         // create the viewModel
-        viewModel = ViewModelProviders.of(this).get(
+        viewModel = ViewModelProvider(this).get(
             HomeScreenViewModel::class.java)
 
         // bind this activity to the viewModel
@@ -86,11 +96,24 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         // Initialiserer linechart
         lineChart = findViewById(R.id.line_chart)
 
+        // Actionbar icon
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_action_name)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         // start new activity when clicking on Enter co2 button
         enterCo2Button.setOnClickListener {
             // start next activity
             startActivity(Intent(this, EnterCo2Activity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
+
+
+
+        val adapter = MyViewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(FragmentOne())
+        adapter.addFragment(FragmentTwo())
+        viewPager.adapter = adapter
+        viewPager.currentItem = 2
 
         // check if date of last input in todaysCountTable = today. If not -> delete todays count
         val dateInCo2CountTable: String? = viewModel.dateInCo2CountTable
@@ -102,46 +125,75 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
 
         // Create the observer which updates the UI with todays count
         val co2CountObserver = Observer<String> { newCount ->
-            if (newCount == null) {
-                co2counter.setText(R.string.defaultValue)
-                checkWeekdayAndUpdateLineChart(0f)
-                Log.d("TodayObserver", "observer1: nothing saved in todays database")
-            } else {
-                // Update UI with current data
-                val co2CounterToday = newCount.toFloat() / 1000
-                countTodayForLineChart = co2CounterToday
-                co2counter.text = (String.format("%.2f", co2CounterToday) + " kg")
-                checkWeekdayAndUpdateLineChart(co2CounterToday)
+            viewPager.currentItem = 2
+            try {
+                if (newCount == null) {
+                    enterCo2Button.visibility = View.VISIBLE
+                    imageView2.setImageResource(R.drawable.carbon_footprint)
+                    co2counter.setText(R.string.defaultValue)
+                    circle.progress = 0
+                    checkWeekdayAndUpdateLineChart(0f)
+                    Log.d("TodayObserver", "observer1: nothing saved in todays database")
+                } else {
+                    if (newCount.toFloat() > 1840000.0){
+                        enterCo2Button.visibility = View.GONE
+                        showDialogMaxEntered()
+                        imageView2.setImageResource(R.drawable.exclamation)
+                    } else if (newCount.toFloat() > 46000.0 && newCount.toFloat() <= 1840000.0 ){
+                        showDialogAverage()
+                    }
+                    // Update UI with current data
+                    val co2CounterToday = newCount.toFloat() / 1000
+                    countTodayForLineChart = co2CounterToday
+                    co2counter.text = (String.format("%.2f", co2CounterToday) + " kg")
+                    checkWeekdayAndUpdateLineChart(co2CounterToday)
 
-                val circleProcess = newCount.toFloat().toInt()
-                circle.progress = circleProcess
-                countTodayForProgressbar = circleProcess
-                Log.d("TodayObserver", "observer1: new count for today $countTodayForProgressbar")
+                    val circleProcess = newCount.toFloat().toInt()
+                    circle.progress = circleProcess
+                    countTodayForProgressbar = circleProcess
+                    Log.d("TodayObserver", "observer1: new count for today $countTodayForProgressbar")
 
-                // Check weekday today and insert accumulated count in the weekly database table
-                when (now.get(Calendar.DAY_OF_WEEK)){
-                    Calendar.MONDAY -> inputIntoWeeklyTable = DailyCo2Count(1, newCount, currentDate)
-                    Calendar.TUESDAY -> inputIntoWeeklyTable = DailyCo2Count(2, newCount, currentDate)
-                    Calendar.WEDNESDAY -> inputIntoWeeklyTable = DailyCo2Count(3, newCount, currentDate)
-                    Calendar.THURSDAY -> inputIntoWeeklyTable = DailyCo2Count(4, newCount, currentDate)
-                    Calendar.FRIDAY -> inputIntoWeeklyTable = DailyCo2Count(5, newCount, currentDate)
-                    Calendar.SATURDAY -> inputIntoWeeklyTable = DailyCo2Count(6, newCount, currentDate)
-                    Calendar.SUNDAY -> inputIntoWeeklyTable = DailyCo2Count(7, newCount, currentDate)
+                    // Check weekday today and insert accumulated count in the weekly database table
+                    when (now.get(Calendar.DAY_OF_WEEK)){
+                        Calendar.MONDAY -> inputIntoWeeklyTable = DailyCo2Count(1, newCount, currentDate)
+                        Calendar.TUESDAY -> inputIntoWeeklyTable = DailyCo2Count(2, newCount, currentDate)
+                        Calendar.WEDNESDAY -> inputIntoWeeklyTable = DailyCo2Count(3, newCount, currentDate)
+                        Calendar.THURSDAY -> inputIntoWeeklyTable = DailyCo2Count(4, newCount, currentDate)
+                        Calendar.FRIDAY -> inputIntoWeeklyTable = DailyCo2Count(5, newCount, currentDate)
+                        Calendar.SATURDAY -> inputIntoWeeklyTable = DailyCo2Count(6, newCount, currentDate)
+                        Calendar.SUNDAY -> inputIntoWeeklyTable = DailyCo2Count(7, newCount, currentDate)
+                    }
+                    viewModel.insertDailyCount(inputIntoWeeklyTable)
+
                 }
-                viewModel.insertDailyCount(inputIntoWeeklyTable)
-
+            } catch (e: Exception){
+                Log.d("newCount Error", e.message)
             }
         }
 
         // Create the observer which updates the progressbar and linechart for weekdays
-        val weeklyCo2CountObserver = Observer<List<String>> { Count ->
-            if (Count != null) {
+        val weeklyCo2CountObserver = Observer<List<String>> { count ->
+            try {
+                if (count != null) {
                 for (i in 0..6){
-                    listOfWeekCountsForProgressbar[i] = Count[i].toFloat().toInt()
-                    listOfWeekCountsForLineChart[i] = Count[i].toFloat()/1000
+                    listOfWeekCountsForProgressbar[i] = count[i].toFloat().toInt()
+                    listOfWeekCountsForLineChart[i] = count[i].toFloat()/1000
                     setLineChart(listOfWeekCountsForLineChart)
+                    if (listOfWeekCountsForLineChart[i] > 46f){
+                        listOfWeekCountsForLineChart[i] = 46f
+                        lineChart.invalidate()
+
+                    }
                 }
-                Log.d("weekObserver", "observer2: new count for weekday $listOfWeekCountsForLineChart")
+                    val yesterday = viewModel.getYesterdaysWeekday()
+                    co2counterFragOne.text = (String.format("%.2f", listOfWeekCountsForLineChart[yesterday!!]) + " kg")
+                    circleFragOne.progress = listOfWeekCountsForProgressbar[yesterday]
+
+                    Log.d("weekObserver", "observer2: new count for weekday $listOfWeekCountsForLineChart")
+                }
+
+            } catch (e: Exception){
+                Log.d("newCount Error", e.message)
             }
         }
 
@@ -150,24 +202,28 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         viewModel.changesToWeeklyCounts.observe(this, weeklyCo2CountObserver)
 
         // Add default values to progressbar and linechart array
-        for (i in 0..6){
-            listOfWeekCountsForProgressbar.add(i,0)
-            listOfWeekCountsForLineChart.add(i, 0f)
+
+        if (listOfWeekCountsForProgressbar.isEmpty()){
+            for (i in 0..6){
+                listOfWeekCountsForProgressbar.add(i,0)
+                listOfWeekCountsForLineChart.add(i, 0f)
+            }
+        }
+
+        if (yValues.isEmpty()){
+            // Add default values to linechart
+            yValues.add(Entry(0f, 0f, "0"))
+            yValues.add(Entry(1f, 0f, "1"))
+            yValues.add(Entry(2f, 0f, "2"))
+            yValues.add(Entry(3f, 0f, "3"))
+            yValues.add(Entry(4f, 0f, "4"))
+            yValues.add(Entry(5f, 0f, "5"))
+            yValues.add(Entry(6f, 0f, "6"))
         }
 
 
-        // Add default values to linechart
-        yValues.add(Entry(0f, 0f, "0"))
-        yValues.add(Entry(1f, 0f, "1"))
-        yValues.add(Entry(2f, 0f, "2"))
-        yValues.add(Entry(3f, 0f, "3"))
-        yValues.add(Entry(4f, 0f, "4"))
-        yValues.add(Entry(5f, 0f, "5"))
-        yValues.add(Entry(6f, 0f, "6"))
-
         // Set customization and preferences
         set1 = LineDataSet(yValues, "DataSet 1")
-        set1?.setCircleColor(R.color.colorBlack)
         set1?.color = ContextCompat.getColor(this, R.color.colorButtonLightGreen)
         set1?.setCircleColor(ContextCompat.getColor(this, R.color.colorWhite))
         set1?.lineWidth = 5f
@@ -175,14 +231,26 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         set1?.valueTextSize = 0f
         set1?.setDrawFilled(false)
         set1?.setDrawHighlightIndicators(false)
+
+        // Highlighting
         set1?.isHighlightEnabled = true
-        set1?.mode = LineDataSet.Mode.CUBIC_BEZIER
+        set1?.highLightColor = (ContextCompat.getColor(this, R.color.colorButtonLightGreen))
+        set1?.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
+
+        set2 = LineDataSet(yValueHighlight, "DataSet 2")
+
+        set2?.setCircleColor(ContextCompat.getColor(this, R.color.colorWhite))
+        set2?.setDrawCircleHole(true)
+        set2?.circleRadius = 10f
+        set2?.valueTextSize = 0f
+        set2?.circleHoleRadius = 5f
+        set2?.circleHoleColor = ContextCompat.getColor(this, R.color.colorButtonDarkGreen)
 
 
         lineChart.setOnChartValueSelectedListener(this)
 
-        val dataSets = ArrayList<ILineDataSet>()
         dataSets.add(set1!!)
+        dataSets.add(set2!!)
         val data = LineData(dataSets)
 
         // set data
@@ -196,13 +264,19 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         lineChart.xAxis.labelCount = 5
         lineChart.xAxis.position = XAxis.XAxisPosition.TOP
 
+//        val ll = LimitLine(0f)
+//        lineChart.axisLeft.addLimitLine(ll)
+
+//        ll.lineColor = ContextCompat.getColor(this, R.color.colorWhite)
+
         lineChart.axisLeft.setDrawGridLines(false)
         lineChart.axisRight.setDrawGridLines(false)
         lineChart.xAxis.setDrawGridLines(true)
+        lineChart.axisLeft.setDrawLabels(false)
         lineChart.axisRight.isEnabled = false
-        lineChart.axisLeft.isEnabled = false
-        lineChart.axisRight.axisMaximum = 46f
-        lineChart.axisLeft.axisMaximum = 46f
+        lineChart.axisLeft.isEnabled = true
+        lineChart.axisRight.axisMaximum = 49f //46f er max
+        lineChart.axisLeft.axisMaximum = 49f //46f er max
         lineChart.axisRight.axisMinimum = -2f
         lineChart.axisLeft.axisMinimum = -2f
 
@@ -224,7 +298,6 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         // Alarm manager.
         alarmMgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
-            //intent.putExtra("accumulatedCountForTheDay", viewModel.accumulatedCo2Count)
             PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         }
@@ -239,16 +312,17 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         //make sure you aren't setting alarm for earlier today
         checkTime(calendar)
 
-        alarmMgr?.setExact(
-            AlarmManager.RTC,
-            calendar.timeInMillis,
-            alarmIntent
-        )
+//        alarmMgr?.setExact(
+//            AlarmManager.RTC,
+//            calendar.timeInMillis,
+//            alarmIntent
+//        )
 
     }
 
     // Function to update todays count in LineChart
     private fun checkWeekdayAndUpdateLineChart(value: Float){
+
         when (now.get(Calendar.DAY_OF_WEEK)){
             Calendar.MONDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(1, value.toString(), currentDate)
@@ -275,13 +349,12 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                 weekDays[5] = "Idag"
             }
             Calendar.SUNDAY -> {
-//                yValues[6] = Entry(6f, value, "6")
-//                listOfWeekCountsForLineChart[6] = value
                 inputIntoWeeklyTable = DailyCo2Count(7, value.toString(), currentDate)
                 weekDays[6] = "Idag"
             }
         }
         viewModel.insertDailyCount(inputIntoWeeklyTable)
+        yValueHighlight.clear()
         lineChart.invalidate()
     }
 
@@ -319,6 +392,12 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
             return true
         }
 
+        when(item.itemId){
+            android.R.id.home -> {
+                showDialogInfo()
+            }
+        }
+
         return super.onOptionsItemSelected(item)
 
     }
@@ -342,11 +421,15 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         yValues[5] = Entry(5f, 0f, "5")
         yValues[6] = Entry(6f, 0f, "6")
 
+        viewModel.insertEmptyValuesIntoWeekTable()
+        circle.progress = 0
+
         for (i in 0..6){
             listOfWeekCountsForProgressbar[i] = 0
             listOfWeekCountsForLineChart[i] = 0f
         }
 
+        yValueHighlight.clear()
         lineChart.invalidate()
 
     }
@@ -356,19 +439,68 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         countTodayForLineChart = 0f
         countTodayForProgressbar = 0
         circle.progress = 0
+        yValueHighlight.clear()
         checkWeekdayAndUpdateLineChart(0f)
     }
 
+    // Function to show the Dialog
+    private fun showDialogInfo(){
+        dialogInfo = Dialog(this)
+        dialogInfo.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogInfo.setContentView(R.layout.activity_dialog)
+        dialogInfo.setTitle("info")
+
+        button = dialogInfo.findViewById<View>(R.id.button_ok) as Button
+        button.isEnabled = true
+        button.setOnClickListener {
+            dialogInfo.cancel()
+        }
+        dialogInfo.show()
+
+    }
+
+    private fun showDialogMaxEntered(){
+        dialogMaxEntered = Dialog(this)
+        dialogMaxEntered.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogMaxEntered.setContentView(R.layout.activity_dialog_max_entered)
+        dialogMaxEntered.setTitle("max_entered")
+
+        button = dialogMaxEntered.findViewById<View>(R.id.button_ok) as Button
+        button.setOnClickListener{
+            dialogMaxEntered.cancel()
+        }
+        dialogMaxEntered.show()
+    }
+
+    private fun showDialogAverage(){
+        dialogAverageReached = Dialog(this)
+        dialogAverageReached.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogAverageReached.setContentView(R.layout.activity_dialog_average)
+        dialogAverageReached.setTitle("average")
+
+        button = dialogAverageReached.findViewById<View>(R.id.button_ok) as Button
+        button.setOnClickListener{
+            dialogAverageReached.cancel()
+        }
+        dialogAverageReached.show()
+    }
+
     override fun onNothingSelected() {
+        yValueHighlight.clear()
     }
 
     // Function to update LineChart with correct values when weekday in LineChart is selected
     override fun onValueSelected(e: Entry?, h: Highlight?) {
 
+        viewPager.currentItem = 2
+
         if (e != null) {
             val dayOfWeek = now.get(Calendar.DAY_OF_WEEK)
+            yValueHighlight.clear()
+
             when(e.data) {
                 "0" -> {
+                    yValueHighlight.add(e)
                     if (dayOfWeek == 2) {
                         headline.setText(R.string.today)
                         if (countTodayForProgressbar != 0){
@@ -393,6 +525,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                 }
 
                 "1" -> {
+                    yValueHighlight.add(e)
                     if (dayOfWeek == 3) {
                         headline.setText(R.string.today)
                         if (countTodayForProgressbar != 0){
@@ -416,6 +549,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                     }
                 }
                 "2" -> {
+                    yValueHighlight.add(e)
                     if (dayOfWeek == 4) {
                         headline.setText(R.string.today)
                         if (countTodayForProgressbar != 0){
@@ -439,6 +573,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                     }
                 }
                 "3" -> {
+                    yValueHighlight.add(e)
                     if (dayOfWeek == 5) {
                         headline.setText(R.string.today)
                         if (countTodayForProgressbar != 0){
@@ -462,6 +597,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                     }
                 }
                 "4" -> {
+                    yValueHighlight.add(e)
                     if (dayOfWeek == 6) {
                         headline.setText(R.string.today)
                         if (countTodayForProgressbar != 0){
@@ -485,6 +621,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                     }
                 }
                 "5" -> {
+                    yValueHighlight.add(e)
                     if (dayOfWeek == 7) {
                         headline.setText(R.string.today)
                         if (countTodayForProgressbar != 0){
@@ -508,6 +645,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                     }
                 }
                 "6" -> {
+                    yValueHighlight.add(e)
                     if (dayOfWeek == 1) {
                         headline.setText(R.string.today)
                         if (countTodayForProgressbar != 0){
@@ -532,12 +670,33 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                 }
             }
         }
+
     }
 
     override fun onSuccess() {
     }
 
     override fun onFailure(message: String) {
+    }
+
+    class MyViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+
+        private val fragmentList : MutableList<Fragment> = ArrayList()
+
+        override fun getItem(position: Int): Fragment {
+            return fragmentList[position]
+
+        }
+
+        override fun getCount(): Int {
+            return fragmentList.size
+        }
+
+        fun addFragment(fragment : Fragment) {
+            fragmentList.add(fragment)
+
+        }
+
     }
 
 }

@@ -45,7 +45,7 @@ class AlarmService : Service() {
                 }
 
             insert(input)
-            co2CountDao.deleteAllCo2CountsFromTable()
+            repository.deleteAllCo2CountsFromTable()
             Log.d("alarmmanager", "Alarm ${co2CountDao.getAccumulatedCo2CountsAsString()}")
             return super.onStartCommand(intent, flags, startId)
         }

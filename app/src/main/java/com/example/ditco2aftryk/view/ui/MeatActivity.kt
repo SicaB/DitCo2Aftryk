@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityMeatBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
@@ -26,7 +26,7 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
         super.onCreate(savedInstanceState)
 
         // create the viewModel
-        val viewModel = ViewModelProviders.of(this).get(
+        val viewModel = ViewModelProvider(this).get(
             MeatViewModel::class.java)
 
         // Bind this activity to the layout xml file using databinding
@@ -64,7 +64,7 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (enterKgCooked.text.isNotEmpty()) {
+                    if (enterKgCooked.text.isNotEmpty() && enterKgCooked.text.toString() != ".") {
                         val kgCooked = enterKgCooked.text.toString().toDouble()
                         val calculatedMeatCo2 = kgCooked * co2Number
                         calculatedCo2TextField.text = String.format("%.2f", calculatedMeatCo2)
@@ -113,6 +113,7 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
 
     override fun onBackButtonClicked(v: View?) {
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
@@ -121,6 +122,7 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         // start activity
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
@@ -132,6 +134,8 @@ class MeatActivity : AppCompatActivity(), Listener, Actionbar  {
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
     }
 
     override fun onFailure(message: String) {

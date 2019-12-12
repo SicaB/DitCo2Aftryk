@@ -72,4 +72,30 @@
         <item>Lam</item>
     </string-array>
 
+    <!-- Dialog -->
+    <string name="DialogHeadline">Velkommen!</string>
+    <string name="DialogText">Denne co2-beregner hjælper dig med at holde styr på din co2-udledning.
+
+        \n\n
+
+        Øverst ser du, hvor meget co2 du har udledt på pågældende dag.
+        Cirklen viser den gennemsnitlige daglige co2-udledning, som en dansker udleder om dagen, hvilket er ca. 47 når cirklen er fyldt, har du nået dette gennemsnit.
+        Nederst kan du følge med i din udledning på ugentlig basis.
+        \n\n
+
+        God fornøjelse! </string>
+
+    <string name="DialogHeadlineMaxValue">Du kan ikke indtaste mere idag!</string>
+    <string name="DialogTextMaxValue">Det gik desværre ikke så godt idag. Din co2 udledning er nået langt over grænsen for hvad
+        en gennemsnitsdansker udleder på en dag. Du kan helt sikkert gøre det bedre.
+
+        \n\n
+
+        Kom gerne tilbage i morgen. </string>
+
+    <string name="DialogHeadlineAverage">Du er nået gennemsnittet!</string>
+    <string name="DialogTextAverage">Du har overskredet gennemsnittet for hvad en dansker udleder om dagen, men bare rolig,
+        du kan stadigvæk indtaste co2 selvom du har overskredet gennemsnittet.
+    </string>
+
 </resources>

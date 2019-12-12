@@ -16,8 +16,8 @@ android {
         applicationId "com.sicacreations.ditco2aftryk"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "1.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -47,15 +47,16 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     def retrofitVersion = '2.6.0',
-        roomVersion = '2.2.1',
+        roomVersion = '2.2.2',
         lifecycleVersion = '2.2.0-rc02',
         coroutines = '1.2.0',
-        materialVersion = '1.2.0-alpha01',
+        materialVersion = '1.2.0-alpha02',
         kodeinVersion = '6.2.1',
         navigationArchVersion = '2.2.0-rc02',
         lottieVersion = '3.1.0',
@@ -67,7 +68,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     // RecyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
@@ -107,6 +108,8 @@ dependencies {
 
     // CustomGauge
     implementation 'pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3'
+
+    implementation 'com.android.support:design:28.1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

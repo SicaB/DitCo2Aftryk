@@ -15,6 +15,8 @@
             android:id="@+id/clothes_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:background="@color/colorBlack"
             tools:context=".view.ui.ClothesActivity">
 
@@ -30,7 +32,7 @@
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/home"
-                android:layout_width="140dp"
+                android:layout_width="60dp"
                 android:layout_height="100dp"
                 android:onClick="onHomeButtonClicked"
                 android:background="@color/colorBlack"
@@ -62,6 +64,7 @@
                 android:text="@={viewmodel.ClothesCo2Input}"
                 android:textColor="@color/colorBlack"
                 android:maxLength="4"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -72,7 +75,7 @@
                 android:layout_width="392dp"
                 android:layout_height="66dp"
                 android:textColor="@color/colorTextfieldLightGreen"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:background="@drawable/calculated_co2_field"
                 android:layout_marginBottom="60dp"
                 app:layout_constraintBottom_toTopOf="@id/saveCo2Btn"
@@ -119,7 +122,7 @@
                 android:text="@string/count_co2_btn"
                 android:textAllCaps="false"
                 android:textColor="@color/colorButtonText"
-                android:textSize="34sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/imageView"
                 app:layout_constraintLeft_toLeftOf="parent"

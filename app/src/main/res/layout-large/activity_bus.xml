@@ -124,7 +124,7 @@
                 android:text="@string/count_co2_btn"
                 android:textAllCaps="false"
                 android:textColor="@color/colorButtonText"
-                android:textSize="34sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/imageView"
                 app:layout_constraintLeft_toLeftOf="parent"

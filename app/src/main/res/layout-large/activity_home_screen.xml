@@ -21,75 +21,80 @@
             android:background="@drawable/background_gradient"
             tools:context=".view.ui.HomeScreenActivity">
 
-        <LinearLayout
-                android:id="@+id/top_layout"
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="0"
-                android:layout_marginTop="60dp">
+                android:layout_height="400dp"/>
 
-            <TextView
-                    android:id="@+id/headline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/headline_today"
-                    android:textColor="@color/colorTextfieldLightGreen"
-                    android:textSize="38sp" />
+<!--        <LinearLayout-->
+<!--                android:id="@+id/top_layout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_weight="0"-->
+<!--                android:layout_marginTop="60dp">-->
 
-            <TextView
-                    android:id="@+id/co2counter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@{viewmodel.accumulatedCo2Count}"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="38sp"
-                    tools:text="0" />
+<!--            <TextView-->
+<!--                    android:id="@+id/headline"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:text="@string/headline_today"-->
+<!--                    android:textColor="@color/colorTextfieldLightGreen"-->
+<!--                    android:textSize="38sp" />-->
 
-        </LinearLayout>
+<!--            <TextView-->
+<!--                    android:id="@+id/co2counter"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:text="@{viewmodel.accumulatedCo2Count}"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="38sp"-->
+<!--                    tools:text="0" />-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="431dp"
-                android:layout_weight="8">
+<!--        </LinearLayout>-->
 
-            <ProgressBar
-                    android:id="@+id/circle"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="587dp"
-                    android:layout_height="504dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/circle_shape"
-                    android:indeterminate="false"
-                    android:max="46000"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/circular_progress_bar"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:layout_constraintVertical_bias="0.491" />
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="431dp"-->
+<!--                android:layout_weight="8">-->
 
-            <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="402dp"
-                    android:layout_height="300dp"
-                    app:layout_constraintBottom_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/carbon_footprint" />
+<!--            <ProgressBar-->
+<!--                    android:id="@+id/circle"-->
+<!--                    style="?android:attr/progressBarStyleHorizontal"-->
+<!--                    android:layout_width="587dp"-->
+<!--                    android:layout_height="504dp"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:background="@drawable/circle_shape"-->
+<!--                    android:indeterminate="false"-->
+<!--                    android:max="46000"-->
+<!--                    android:progress="0"-->
+<!--                    android:progressDrawable="@drawable/circular_progress_bar"-->
+<!--                    android:visibility="visible"-->
+<!--                    app:layout_constraintBottom_toTopOf="parent"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.491" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            <ImageView-->
+<!--                    android:id="@+id/imageView"-->
+<!--                    android:layout_width="302dp"-->
+<!--                    android:layout_height="200dp"-->
+<!--                    app:layout_constraintBottom_toTopOf="parent"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="parent"-->
+<!--                    app:srcCompat="@drawable/carbon_footprint" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 
         <Button
                 android:id="@+id/enterCo2Button"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="62dp"
                 android:layout_marginStart="160dp"
                 android:layout_marginEnd="160dp"
@@ -101,8 +106,9 @@
                 android:text="@string/enter_co2_btn"
                 android:textAllCaps="false"
                 android:textColor="@color/colorButtonText"
-                android:textSize="22sp"
+                android:textSize="32sp"
                 android:textStyle="bold"
+                android:layout_gravity="center"
                 app:layout_constraintBottom_toTopOf="@id/frame_lineChart"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

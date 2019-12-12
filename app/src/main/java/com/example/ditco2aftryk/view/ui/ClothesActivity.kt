@@ -7,7 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ditco2aftryk.R
 import com.example.ditco2aftryk.databinding.ActivityClothesBinding
 import com.example.ditco2aftryk.utils.hideKeyboard
@@ -21,7 +21,7 @@ class ClothesActivity : AppCompatActivity(), Listener, Actionbar {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // create the viewModel
-        val viewModel = ViewModelProviders.of(this).get(
+        val viewModel = ViewModelProvider(this).get(
             ClothesViewModel::class.java)
 
         // Bind this activity to the layout xml file using databinding
@@ -47,7 +47,7 @@ class ClothesActivity : AppCompatActivity(), Listener, Actionbar {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (enterKgPurchased.text.isNotEmpty()) {
+                if (enterKgPurchased.text.isNotEmpty() && enterKgPurchased.text.toString() != ".") {
                     val kgPurchased = enterKgPurchased.text.toString().toDouble()
                     val calculatedClothesCo2 = kgPurchased * 20
                     calculatedCo2TextField.text = String.format("%.2f", calculatedClothesCo2)
@@ -66,6 +66,7 @@ class ClothesActivity : AppCompatActivity(), Listener, Actionbar {
         val intent = Intent(this, HomeScreenActivity::class.java)
         // start activity
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
@@ -74,11 +75,13 @@ class ClothesActivity : AppCompatActivity(), Listener, Actionbar {
 
     override fun onBackButtonClicked(v: View?) {
         startActivity(Intent(this, EnterCo2Activity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 
     override fun onHomeButtonClicked(v: View?) {
         startActivity(Intent(this, HomeScreenActivity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
 }

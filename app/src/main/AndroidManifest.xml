@@ -38,7 +38,7 @@
                 android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".view.ui.HomeScreenActivity"
                 android:screenOrientation="portrait"
-                android:launchMode="singleTop"
+                android:launchMode="singleInstance"
                 />
 
         <activity android:name=".view.ui.SplashScreenActivity"

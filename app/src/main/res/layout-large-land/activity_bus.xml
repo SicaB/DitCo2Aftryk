@@ -45,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/headline_bus"
+                android:layout_marginTop="100dp"
                 android:textColor="@color/colorTextfieldLightGreen"
                 android:textSize="45sp"
                 app:layout_constraintBottom_toTopOf="@id/enterKmDriven"
@@ -56,8 +57,8 @@
                 android:id="@+id/enterKmDriven"
                 android:layout_width="392dp"
                 android:layout_height="66dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/textfield_color"
                 android:inputType="number|numberDecimal"
                 android:text="@={viewmodel.BusCo2Input}"
@@ -67,7 +68,7 @@
                 app:layout_constraintBottom_toTopOf="@id/calculatedCo2TextField"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/headline" />
 
         <TextView
                 android:id="@+id/calculatedCo2TextField"
@@ -110,9 +111,9 @@
 
         <Button
                 android:id="@+id/saveCo2Btn"
-                android:layout_width="313dp"
-                android:layout_height="59dp"
-                android:layout_marginBottom="20dp"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="100dp"
                 android:background="@drawable/button_gradient"
                 android:onClick="@{viewmodel::onSaveCo2ButtonClick}"
                 android:shadowColor="@color/colorBlack"
@@ -122,24 +123,14 @@
                 android:text="@string/count_co2_btn"
                 android:textAllCaps="false"
                 android:textColor="@color/colorButtonText"
-                android:textSize="34sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/imageView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calculatedCo2TextField" />
 
-        <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginBottom="80dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/saveCo2Btn"
-                app:srcCompat="@drawable/co2windmill" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

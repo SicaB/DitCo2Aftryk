@@ -9,10 +9,12 @@ import com.example.ditco2aftryk.model.entities.DailyCo2Count
 import com.example.ditco2aftryk.model.repositories.Co2CountRepository
 import com.example.ditco2aftryk.view.ui.Listener
 import kotlinx.coroutines.launch
+import java.util.*
 
 class HomeScreenViewModel(application: Application) : AndroidViewModel(application){
 
     var listener: Listener? = null
+    private var now = Calendar.getInstance()
 
     // ViewModel maintains a reference to the repository to get data.
     private val repository: Co2CountRepository
@@ -57,6 +59,21 @@ class HomeScreenViewModel(application: Application) : AndroidViewModel(applicati
     fun insertEmptyValuesIntoWeekTable() = viewModelScope.launch{
         repository.insertEmptyValuesIntoWeekTable()
     }
+
+    fun getYesterdaysWeekday() : Int? {
+        var yesterday: Int? = null
+        when (now.get(Calendar.DAY_OF_WEEK)){
+            Calendar.MONDAY -> yesterday = 6
+            Calendar.TUESDAY -> yesterday = 0
+            Calendar.WEDNESDAY -> yesterday = 1
+            Calendar.THURSDAY -> yesterday = 2
+            Calendar.FRIDAY -> yesterday = 3
+            Calendar.SATURDAY -> yesterday = 4
+            Calendar.SUNDAY -> yesterday = 5
+        }
+        return yesterday
+    }
+
 
 }
 
