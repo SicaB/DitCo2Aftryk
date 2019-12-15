@@ -48,7 +48,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
     private var alarmMgr: AlarmManager? = null
 
     // week days for the diagram
-    private var weekDays = arrayOf("man.", "tirs.", "ons.", "tors.", "fre.", "lør.", "søn,")
+    private var weekDays = arrayOf("Man.", "Tirs.", "Ons.", "Tors.", "Fre.", "Lør.", "Søn.")
 
     // In LineChart and progressbar arrays. 1, 2, 3, 4, 5, 6, 7 = count of days in the week (Monday-Sunday)
     private var countTodayForLineChart: Float = 0f
@@ -83,6 +83,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
 
         // Bind this activity to the layout xml file using databinding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home_screen)
+
         // create the viewModel
         viewModel = ViewModelProvider(this).get(
             HomeScreenViewModel::class.java)
@@ -107,8 +108,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
-
-
+        // Setup viewPager adapter
         val adapter = MyViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(FragmentOne())
         adapter.addFragment(FragmentTwo())
@@ -121,6 +121,8 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         if (dateInCo2CountTable != null && dateInCo2CountTable != currentDate){
             viewModel.deleteCountDay()
         }
+
+        // Insert empty values in table if nothing is inserted
         viewModel.insertEmptyValuesIntoWeekTable()
 
         // Create the observer which updates the UI with todays count
@@ -139,7 +141,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
                         enterCo2Button.visibility = View.GONE
                         showDialogMaxEntered()
                         imageView2.setImageResource(R.drawable.exclamation)
-                    } else if (newCount.toFloat() > 46000.0 && newCount.toFloat() <= 1840000.0 ){
+                    } else if (newCount.toFloat() in 46000.0..1840000.0){
                         showDialogAverage()
                     }
                     // Update UI with current data
@@ -202,7 +204,6 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         viewModel.changesToWeeklyCounts.observe(this, weeklyCo2CountObserver)
 
         // Add default values to progressbar and linechart array
-
         if (listOfWeekCountsForProgressbar.isEmpty()){
             for (i in 0..6){
                 listOfWeekCountsForProgressbar.add(i,0)
@@ -264,11 +265,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         lineChart.xAxis.labelCount = 5
         lineChart.xAxis.position = XAxis.XAxisPosition.TOP
 
-//        val ll = LimitLine(0f)
-//        lineChart.axisLeft.addLimitLine(ll)
-
-//        ll.lineColor = ContextCompat.getColor(this, R.color.colorWhite)
-
+        // lineChart customization
         lineChart.axisLeft.setDrawGridLines(false)
         lineChart.axisRight.setDrawGridLines(false)
         lineChart.xAxis.setDrawGridLines(true)
@@ -295,11 +292,10 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         lineChart.xAxis.axisLineWidth = 2f
 
 
-        // Alarm manager.
+        // Alarm manager
         alarmMgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
             PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
         }
 
         val calendar: Calendar = Calendar.getInstance().apply {
@@ -312,6 +308,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         //make sure you aren't setting alarm for earlier today
         checkTime(calendar)
 
+        // Code to set alarm. Commented out for now
 //        alarmMgr?.setExact(
 //            AlarmManager.RTC,
 //            calendar.timeInMillis,
@@ -326,31 +323,31 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         when (now.get(Calendar.DAY_OF_WEEK)){
             Calendar.MONDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(1, value.toString(), currentDate)
-                weekDays[0] = "Idag"
+                weekDays[0] = "I dag"
             }
             Calendar.TUESDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(2, value.toString(), currentDate)
-                weekDays[1] = "Idag"
+                weekDays[1] = "I dag"
             }
             Calendar.WEDNESDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(3, value.toString(), currentDate)
-                weekDays[2] = "Idag"
+                weekDays[2] = "I dag"
             }
             Calendar.THURSDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(4, value.toString(), currentDate)
-                weekDays[3] = "Idag"
+                weekDays[3] = "I dag"
             }
             Calendar.FRIDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(5, value.toString(), currentDate)
-                weekDays[4] = "Idag"
+                weekDays[4] = "I dag"
             }
             Calendar.SATURDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(6, value.toString(), currentDate)
-                weekDays[5] = "Idag"
+                weekDays[5] = "I dag"
             }
             Calendar.SUNDAY -> {
                 inputIntoWeeklyTable = DailyCo2Count(7, value.toString(), currentDate)
-                weekDays[6] = "Idag"
+                weekDays[6] = "I dag"
             }
         }
         viewModel.insertDailyCount(inputIntoWeeklyTable)

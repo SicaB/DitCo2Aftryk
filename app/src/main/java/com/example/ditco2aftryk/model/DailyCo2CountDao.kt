@@ -37,7 +37,4 @@ interface DailyCo2CountDao {
     """)
     fun insertEmptyValuesIntoWeekTable()
 
-
-
-
 }

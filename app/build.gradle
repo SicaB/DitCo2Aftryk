@@ -16,8 +16,8 @@ android {
         applicationId "com.sicacreations.ditco2aftryk"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.2.1"
+        versionCode 6
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -54,11 +54,11 @@ dependencies {
 
     def retrofitVersion = '2.6.0',
         roomVersion = '2.2.2',
-        lifecycleVersion = '2.2.0-rc02',
+        lifecycleVersion = '2.2.0-rc03',
         coroutines = '1.2.0',
         materialVersion = '1.2.0-alpha02',
         kodeinVersion = '6.2.1',
-        navigationArchVersion = '2.2.0-rc02',
+        navigationArchVersion = '2.2.0-rc03',
         lottieVersion = '3.1.0',
         firebaseVersion = '19.2.0',
         crashlyticsVersion = '2.10.1'

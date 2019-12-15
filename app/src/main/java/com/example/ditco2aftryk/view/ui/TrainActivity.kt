@@ -78,16 +78,8 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
         enterKmDriven.hideKeyboard()
 
         toast("Dit co2 aftryk er gemt")
-        // intent is used to start a new activity
-        //val intent = Intent(this, HomeScreenActivity::class.java)
-
         val intent = Intent(this, HomeScreenActivity::class.java)
-        // set the new task and clear flags
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-
-        // start activity
-        //startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
@@ -95,6 +87,4 @@ class TrainActivity : AppCompatActivity(), Listener, Actionbar {
     override fun onFailure(message: String) {
         toast(message)
     }
-
-
 }

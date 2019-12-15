@@ -1,22 +1,22 @@
 <resources>
-    <string name="app_name">Dit Co2 Aftryk</string>
+    <string name="app_name">Dit CO2 Aftryk</string>
 
     <!-- Headlines -->
-    <string name="headline_today">Idag</string>
+    <string name="headline_today">I dag</string>
     <string name="headline_transport">Transport</string>
     <string name="headline_choose">Vælg</string>
     <string name="headline_consumption">Forbrug</string>
-    <string name="headline_plane">Fly transport</string>
-    <string name="headline_car">Bil Transport</string>
-    <string name="headline_train">Tog Transport</string>
-    <string name="headline_bus">Bus Transport</string>
-    <string name="headline_clothes">Tøj Indkøb</string>
-    <string name="headline_meat">Kød forbrug</string>
-    <string name="headline_el">El forbrug</string>
-    <string name="headline_heating">Varme forbrug</string>
+    <string name="headline_plane">Flytransport</string>
+    <string name="headline_car">Biltransport</string>
+    <string name="headline_train">Togtransport</string>
+    <string name="headline_bus">Bustransport</string>
+    <string name="headline_clothes">Tøjindkøb</string>
+    <string name="headline_meat">Kødforbrug</string>
+    <string name="headline_el">El-forbrug</string>
+    <string name="headline_heating">Varmeforbrug</string>
 
     <!-- Buttons -->
-    <string name="enter_co2_btn">Indtast co2</string>
+    <string name="enter_co2_btn">Indtast CO2</string>
     <string name="plane_btn">Fly</string>
     <string name="car_btn">Bil</string>
     <string name="train_btn">Tog</string>
@@ -29,13 +29,13 @@
 
     <!-- TextViews -->
     <string name="hours_flown">Antal fløjet timer</string>
-    <string name="co2_emitted">Udledt co2 i kg</string>
+    <string name="co2_emitted">Udledt CO2 i kg</string>
     <string name="km_distance">Antal km kørt</string>
     <string name="kg_cooked">Antal gram tilberedt</string>
     <string name="kWt">Antal kWt</string>
     <string name="kg_purchased">Antal kg</string>
     <string name="defaultValue">0.00 kg</string>
-    <string name="today">Idag</string>
+    <string name="today">I dag</string>
     <string name="monday">Mandag</string>
     <string name="tuesday">Tirsdag</string>
     <string name="wednesday">Onsdag</string>
@@ -45,17 +45,16 @@
     <string name="sunday">Søndag</string>
 
     <!-- MenuItems -->
-    <string name="delete_daily_count">Nulstil idag</string>
+    <string name="delete_daily_count">Nulstil i dag</string>
     <string name="delete_Weekly_count">Nulstil denne uge</string>
-    <string name="save">Gem og gå til næste dag</string>
 
     <!-- Spinners -->
     <string-array name="carOptions">
         <item>Lille bil</item>
         <item>Mellemstor bil</item>
         <item>Stor bil</item>
-        <item>Diesel bil</item>
-        <item>Hybrid bil</item>
+        <item>Diesel-bil</item>
+        <item>Hybrid-bil</item>
         <item>El-bil</item>
     </string-array>
 
@@ -74,28 +73,25 @@
 
     <!-- Dialog -->
     <string name="DialogHeadline">Velkommen!</string>
-    <string name="DialogText">Denne co2-beregner hjælper dig med at holde styr på din co2-udledning.
+    <string name="DialogText">Denne CO2-beregner hjælper dig med at holde styr på din CO2-udledning.\n
 
-        \n\n
+        \nØverst ser du, hvor meget CO2 du har udledt på pågældende dag.
+        Cirklen viser din daglige CO2-udledning. Når cirklen er fyldt, har du nået den gennemsnitlige
+        CO2-udledning, som en dansker udleder om dagen, hvilket svarer til ca. 46 kg.\n
 
-        Øverst ser du, hvor meget co2 du har udledt på pågældende dag.
-        Cirklen viser den gennemsnitlige daglige co2-udledning, som en dansker udleder om dagen, hvilket er ca. 47 når cirklen er fyldt, har du nået dette gennemsnit.
-        Nederst kan du følge med i din udledning på ugentlig basis.
-        \n\n
+        \nNederst kan du følge med i din udledning på ugentlig basis.\n
 
-        God fornøjelse! </string>
+        \nGod fornøjelse! </string>
 
-    <string name="DialogHeadlineMaxValue">Du kan ikke indtaste mere idag!</string>
-    <string name="DialogTextMaxValue">Det gik desværre ikke så godt idag. Din co2 udledning er nået langt over grænsen for hvad
-        en gennemsnitsdansker udleder på en dag. Du kan helt sikkert gøre det bedre.
+    <string name="DialogHeadlineMaxValue">Du kan ikke indtaste mere i dag!</string>
+    <string name="DialogTextMaxValue">Det gik desværre ikke så godt i dag. Din CO2 udledning er nået langt over grænsen for hvad
+        en gennemsnitsdansker udleder på en dag. Du kan helt sikkert gøre det bedre.\n
 
-        \n\n
-
-        Kom gerne tilbage i morgen. </string>
+        \nVi håber, du kommer tilbage i morgen. </string>
 
     <string name="DialogHeadlineAverage">Du er nået gennemsnittet!</string>
-    <string name="DialogTextAverage">Du har overskredet gennemsnittet for hvad en dansker udleder om dagen, men bare rolig,
-        du kan stadigvæk indtaste co2 selvom du har overskredet gennemsnittet.
+    <string name="DialogTextAverage">Du har overskredet gennemsnittet for, hvad en dansker udleder om dagen.
+        Du kan stadigvæk indtaste CO2, selvom du har overskredet gennemsnittet.
     </string>
 
 </resources>

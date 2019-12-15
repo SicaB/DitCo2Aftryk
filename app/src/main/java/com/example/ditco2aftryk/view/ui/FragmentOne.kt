@@ -24,15 +24,10 @@ class FragmentOne : Fragment() {
         // Bind this fragment to the layout xml file using databinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_fragment_one, container, false)
         return binding.rootLayoutFragOne
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        headlineFragOne.text = "Igår"
-
-
-
+        headlineFragOne.text = "I går"
     }
-
 
 }
