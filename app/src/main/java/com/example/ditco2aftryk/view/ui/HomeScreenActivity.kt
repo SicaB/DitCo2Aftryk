@@ -276,6 +276,7 @@ class HomeScreenActivity : AppCompatActivity(), Listener, OnChartValueSelectedLi
         lineChart.axisLeft.axisMaximum = 49f //46f er max
         lineChart.axisRight.axisMinimum = -2f
         lineChart.axisLeft.axisMinimum = -2f
+        lineChart.setExtraOffsets(10f, 10f, 10f, 10f)
 
         // Text customization
         lineChart.xAxis.textColor = ContextCompat.getColor(this, R.color.colorWhite)
